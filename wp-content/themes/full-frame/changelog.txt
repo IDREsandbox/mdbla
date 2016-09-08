@@ -1,0 +1,166 @@
+== Change log ==
+
+= 2.4 =
+* Bug Fixed: White space issue
+* Bug Fixed: Escaped Slider options on output
+* Bug Fixed: esc_html__ replaced with wp_kses in navigation
+* Bug Fixed: `sprintf() too few arguments` issue on other languages
+* Replaced: Footer widget text color from #4040404 to #888
+* Updated: All catchthemes.com link to ssl
+* Updated: Tags in styles.css header
+* Updated: All translation functions escaped
+* Removed: wpadminbar css due to issues with Theme Check Plugin
+* Added: Hungarian translation hu_HU.po and hu_HU.mo
+* Added: Danish translation da_DK.po and da_DK.mo
+
+= 2.3.1 =
+* Bug Fixed: Logo icon issue fixed ( Reported by lepos )
+
+= 2.3 =
+* Added: Disable scrollup option
+* Changed: Color scheme transport to refresh
+* Fixed: Genericions issue with To Top plugin
+* Updated: Sidr menu script to version 2.1.1.1
+* Updated: Meta viewport for better responsive support
+* Updated: Content Width Implementation
+* Updated: Theme Layout retrieval via function
+* Updated: Favicon and Web Clip Migration to Site Icon( Core Support )
+* Updated: Logo to Custom Logo( Core Support ) for WP version 4.5
+
+= 2.2 =
+* Added: Social Icons for Phone, Handset, Cart, Cloud, Link( Custom Link )
+* Enhancement: Used antispambot() function on emails output on social icons
+* Updated Genericons to 3.4.1
+* Updated Jetpack Scroll Pagination Option to enable infinite scroll in Reading Settings
+
+= 2.1.1 =
+* Bug Fixed: Featured Slider Transition Effect Not Updating
+* Update: Text Domain in style.css updated to full-frame
+
+= 2.1 =
+* Bug Fixed: Featured Content Background Settings missing after version update( Reported By davidlspencer )
+* Updated responsive menu sidr js
+
+= 2.0 =
+* Added Lithuanian translation lt_LT.po and lt_LT.mo
+
+= 1.9 =
+* Bug Fixed: Form overflow issue
+* Bug Fixed: Breadcrumb css issue in IE 11
+* Updated: French translation fr_FR.po and fr_FR.mo
+* Removed panel for featured content and featured slider for WordPress version greater than 4.2
+* Removed Custom Textarea control for customizer
+* Updated Customizer active callback scripts (previously handled by jQuery)
+* Updated Customizer sanitization functions
+
+= 1.8 =
+* Added German translation de_DE.po and de_DE.mo
+
+= 1.7 =
+* Added: Missing keywords esc_attr_x in .pot file
+* Bug Fixed: Changed esc_attr_e to echo esc_attr in searchform.php
+* Compatible with WordPress 4.3
+* Removed support for WordPress version less than 4.1
+* Updated codes to comply with deprecating PHP4 style constructors in WordPress 4.3
+* Updated text-domain
+
+= 1.6.2 =
+* Bug Fixed: Single Post navigation css
+* Removed: Author social links from customizer
+* Updated: French translation fr_FR.po and fr_FR.mo
+
+= 1.6.1 =
+* Added: Single Post navigation
+* Updated: Sidr scripts to latest version 1.2.1
+
+= 1.6 =
+* Added: Support for Random Header Image
+* Bug Fixed: Removal of extra '/' in sub-categories in breadcrumb and updates in breadcrumb
+* Bug Fixed: Blog page featured image not overwriting default header image
+* Combined options for Featured Content and renamed the section From Featured Content Options to Featured Content in Customizer
+* Combined options for Featured Slider and renamed the section From Featured Slider Options to Featured Slider in Customizer
+* Removed unnecessary js from custom customizer js as support for WordPress versions less than 4.0 is not required
+* Updated Featured Content Display excerpt option to "Display Content" and added Show Content option
+* Updated Social Widget name
+* Updated Genericion to version 3.3
+
+= 1.5 =
+* Bug Fixed: Header Text only CSS change when not displaying site title and tagline
+* Bug Fixed: Metabox Options not saving properly
+* Bug Fixed: Fixed Slider height overlaps issue. Added Image Loader option on Featured Slider that specifies image-loading support
+
+= 1.4 =
+* Added Brazilian Portuguese translation pt_BR.po and pt_BR.mo
+* Bug Fixed: Responsive css issue with iPhone5 and below
+* Bug Fixed: Sidebar layout option
+* Bug Fixed: Featured content issues
+
+= 1.3 =
+* Added French translation fr_FR.po and fr_FR.mo
+* Bug Fixed: Responsive css issue with iPhone4
+
+= 1.2 =
+* Bug Fixed: Removed social icons wrapper when there is no social icon url defined
+* Bug Fixed: Removed unnecessary function fullframe_content_width() and adjusted value of content width
+* Bug Fixed: Removed unnecessary no-sidebar-full-width layout option in metabox
+* Bug Fixed: Removed assistive-text from Featured Demo Slider ( Reported by bydlo )
+* Bug Fixed: Added jquery.cycle2.js.map ( Reported by tualatinweb )
+
+= 1.1 =
+* Added Swedish translation sv_SE.po and sv_SE.mo
+* Bug Fixed: update keyword _nx:1,2,4c from _nx:1,2 in language file fullframe.pot
+* Bug Fixed: Skype Social icon and open link in new window for email issues
+
+= 1.0 =
+* Bug fixed: Check class logo left or logo right only when there is logo and is not disabled
+* Bug Fixed: Featured Content Layout Type css issue
+* Bug Fixed: added missing keyword _nx:1,2 and esc_html__ in language file fullframe.pot
+
+= 0.8 =
+* Bug Fixed: Html is now allowed in Featured Content Headline and Sub-headline
+* Removed unnecessary file fullframe-menu.js
+* Replaced the_title() with the_title_attribute() where title is used as attribute
+* Replaced all require_once with require
+
+= 0.7 =
+* Removed jquery cookie and its dependencies
+* Added fullframe- prefix to dark css handle
+
+= 0.6 =
+* Added fullframe- prefix to some js handles
+* Bug Fixed: undefined index $page_for_posts for Featured Header Image
+* Bug Fixed: Menu float issue
+* Bug Fixed: alt text for fixed header logo icon
+* Bug Fixed: Admin bar overlap with fixed header while login
+* Bug Fixed: Spacing issue when there is no Header Featured Image & Slider
+* Bug Fixed: Featured Content layout clear on column 4
+* Bug Fixed: Featured Content sliding effect
+* Bug Fixed: Featured Content missing classes entry-header and entry-title
+* Bug Fixed: featured-heading-wrap, $headline and $subheadline empty check in featured content
+* Bug Fixed: Html is now allowed in Promotion Headline
+* Bug Fixed: Responsive style for menu and header details
+* Bug Fixed: Layout Options style
+* Changed demo featured content image and text
+* Changed get_page to get_post as get_page is depreciated
+* Changed default value for single_post_image_layout to disabled
+* Changed default value for featured_image_size to slider
+* Fixed header text condition for Sidebar
+* Removed unnecessary body class
+* Removed unnecessary css
+* Renamed "custom_meta_box_nonce" renamed to "fullframe_custom_meta_box_nonce"
+* Sanitized custom metabox settings
+
+= 0.5 =
+* Changed featured content slider disable by default
+* Removed unnecessary images
+* Removed extra featured content
+
+= 0.4 =
+* Added Option in Enable Header Image: Excluding Home, Page/Post Featured Image
+* Bug Fixed: Breadcrumb position
+* Bug Fixed: Responsive layout for Footer text
+* Initial Release in Catchthemes.com
+* Removed: Secondary Menu
+
+= 0.1-0.3 =
+* Submitted to WordPress.org

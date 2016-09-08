@@ -1,0 +1,43 @@
+#This is the list of hooks supported bt Full Frame by default in their respective order in the files. 
+
+
+In full-frame/content-page.php:
+	fullframe_before_page_container
+
+
+In full-frame/content-single.php:
+	fullframe_before_post_container
+
+
+In full-frame/content.php:
+	fullframe_before_entry_container
+
+
+In full-frame/footer.php:
+	fullframe_after_content
+	fullframe_footer
+	fullframe_after
+
+In full-frame/header.php:
+	fullframe_doctype
+	fullframe_before_wp_head
+	fullframe_before
+	fullframe_header
+	fullframe_after_header
+	fullframe_before_content
+	fullframe_content
+
+
+In full-frame/page.php:
+	fullframe_comment_section
+
+
+In full-frame/sidebar.php:
+	fullframe_before_secondary
+	fullframe_before_primary_sidebar
+	fullframe_after_primary_sidebar
+	fullframe_after_secondary'
+
+
+In full-frame/single.php:
+	fullframe_comment_section

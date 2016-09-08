@@ -1,0 +1,1039 @@
+/*--------------------------------------------------------------
+Responsive Style
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+1. Media queries
+--------------------------------------------------------------*/
+/* Does the same thing as <meta name="viewport" content="width=device-width">,
+ * but in the future W3C standard way. -ms- prefix is required for IE10+ to
+ * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
+ * the meta tag. See http://core.trac.wordpress.org/ticket/25888.
+ */
+@-ms-viewport {
+	width: device-width;
+}
+
+@viewport {
+	width: device-width;
+}
+
+/*--------------------------------------------------------------
+2. Mobile Menus
+--------------------------------------------------------------*/
+.mobile-menu,
+.mobile-menu-anchor,
+.mobile-menu-text {
+	display: none;
+}
+
+#mobile-header-left-menu {
+	float: left;
+}
+
+#mobile-header-right-menu {
+	float: right;
+}
+
+.mobile-menu-anchor a.genericon-menu,
+.mobile-menu-anchor a.genericon-menu:hover {
+	color: #eee;
+	text-decoration: none;
+}
+
+.mobile-header-left-nav-open #mobile-header-left-menu .genericon-menu:before,
+.mobile-secondary-nav-open #mobile-secondary-menu .genericon-menu:before,
+.mobile-header-right-nav-open #mobile-header-right-menu .genericon-menu:before {
+	content: "\f406";
+}
+
+.sidr {
+	display: block;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	z-index: 999999;
+	width: 260px;
+	overflow-x: none;
+	overflow-y: auto;
+	font-size: 15px;
+	background: #333;
+	color: #fff;
+	-webkit-box-shadow: inset 0 0 5px 5px #222;
+	-moz-box-shadow: inset 0 0 5px 5px #222;
+	box-shadow: inset 0 0 5px 5px #222;
+}
+
+.sidr .sidr-inner {
+	padding: 0 0 15px;
+}
+
+.sidr .sidr-inner>p {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.sidr.right {
+	left: auto;
+	right: -260px;
+}
+
+.sidr.left {
+	left: -260px;
+	right: auto;
+}
+
+.sidr h1,
+.sidr h2,
+.sidr h3,
+.sidr h4,
+.sidr h5,
+.sidr h6 {
+	font-size: 11px;
+	font-weight: normal;
+	padding: 0 15px;
+	margin: 0 0 5px;
+	color: #fff;
+	line-height: 24px;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #1a1a1a));
+	background-image: -webkit-linear-gradient(#4d4d4d, #1a1a1a);
+	background-image: -moz-linear-gradient(#4d4d4d, #1a1a1a);
+	background-image: -o-linear-gradient(#4d4d4d, #1a1a1a);
+	background-image: linear-gradient(#4d4d4d, #1a1a1a);
+	-webkit-box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sidr p {
+	font-size: 13px;
+	margin: 0 0 12px;
+}
+
+.sidr p a {
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.sidr>p {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.sidr ul {
+	display: block;
+	margin: 0 0 15px;
+	padding: 0;
+	border-top: 1px solid #1a1a1a;
+	border-bottom: 1px solid #4d4d4d;
+}
+
+.sidr ul li {
+	display:block;
+	margin: 0;
+	line-height: 48px;
+	border-top: 1px solid #4d4d4d;
+	border-bottom: 1px solid #1a1a1a;
+}
+
+.sidr ul li:hover,
+.sidr ul li.active,
+.sidr ul li.sidr-class-active {
+	border-top: none;
+	line-height: 49px;
+}
+
+.sidr ul li:hover>a,
+.sidr ul li:hover>span,
+.sidr ul li.active>a,
+.sidr ul li.active>span,
+.sidr ul li.sidr-class-active>a,
+.sidr ul li.sidr-class-active>span {
+	-webkit-box-shadow: inset 0 0 15px 3px #222;
+	-moz-box-shadow: inset 0 0 15px 3px #222;
+	box-shadow: inset 0 0 15px 3px #222;
+}
+
+.sidr ul li a,
+.sidr ul li span {
+	padding: 0 15px;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+}
+
+.sidr ul li ul {
+	border-bottom: none;
+	margin: 0;
+}
+
+.sidr ul li ul li {
+	line-height: 40px;
+	font-size: 13px;
+}
+
+.sidr ul li ul li:last-child {
+	border-bottom: none;
+}
+
+.sidr ul li ul li:hover,
+.sidr ul li ul li.active,
+.sidr ul li ul li.sidr-class-active {
+	border-top: none;
+	line-height: 41px;
+}
+
+.sidr ul li ul li:hover>a,
+.sidr ul li ul li:hover>span,
+.sidr ul li ul li.active>a,
+.sidr ul li ul li.active>span,
+.sidr ul li ul li.sidr-class-active>a,
+.sidr ul li ul li.sidr-class-active>span {
+	-webkit-box-shadow: inset 0 0 15px 3px #222;
+	-moz-box-shadow: inset 0 0 15px 3px #222;
+	box-shadow: inset 0 0 15px 3px #222;
+}
+
+.sidr ul li ul li a,
+.sidr ul li ul li span {
+	color: #ccc;
+	padding-left: 20px;
+}
+
+.sidr ul li ul li ul li a,
+.sidr ul li ul li ul li span {
+	padding-left: 30px;
+}
+
+.sidr form {
+	margin: 0 15px;
+}
+
+.sidr label {
+	font-size: 13px;
+}
+
+.sidr input[type="text"],
+.sidr input[type="password"],
+.sidr input[type="date"],
+.sidr input[type="datetime"],
+.sidr input[type="email"],
+.sidr input[type="number"],
+.sidr input[type="search"],
+.sidr input[type="tel"],
+.sidr input[type="time"],
+.sidr input[type="url"],
+.sidr textarea, .sidr select {
+	width: 100%;
+	font-size: 13px;
+	padding: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0 0 10px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	border: none;
+	background: rgba(0, 0, 0, 0.1);
+	color: rgba(255, 255, 255, 0.6);
+	display: block;
+	clear: both;
+}
+
+.sidr input[type=checkbox] {
+	width: auto;
+	display: inline;
+	clear: none;
+}
+
+.sidr input[type=button],
+.sidr input[type=submit] {
+	color: #333;
+	background: #fff;
+}
+
+.sidr input[type=button]:hover,
+.sidr input[type=submit]:hover {
+	background: rgba(255, 255, 255, 0.9);
+}
+
+/*--------------------------------------------------------------
+3. x >= 1440px
+--------------------------------------------------------------*/
+@media screen and (min-width: 1440px) {
+	#feature-slider .cycle-slideshow img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+/*--------------------------------------------------------------
+3. x <= 1366px
+--------------------------------------------------------------*/
+@media screen and (max-width: 1366px) {
+	.wrapper {
+		width: 1220px;
+	}
+	#main {
+		width: 840px;
+	}
+}
+
+
+
+/*--------------------------------------------------------------
+3. x <= 1280px
+--------------------------------------------------------------*/
+@media screen and (max-width: 1280px) {
+	.wrapper {
+		width: 1100px;
+	}
+
+	#main {
+	    width: 720px;
+	}
+
+	#featured-content.layout-four .hentry,
+	#supplementary.four .widget-area {
+	    width: 25%;
+	}
+
+	#featured-content.layout-three .hentry,
+	#supplementary.three .widget-area {
+	    width: 33.33%;
+	}
+
+	#featured-content.layout-four .hentry:nth-child(4n+1),
+	#featured-content.layout-three .hentry:nth-child(3n+1) {
+		clear: both;
+	}
+
+	#supplementary.two .widget-area,
+	#footer-left-content,
+	#footer-right-content {
+		width: 50%;
+	}
+
+}
+
+/*--------------------------------------------------------------
+4. x <= 1152px
+--------------------------------------------------------------*/
+@media screen and (max-width: 1152px) {
+	.wrapper {
+		width: 1040px;
+	}
+	#site-generator .wrapper {
+	    padding: 0 10px;
+	}
+
+	#masthead {
+	    padding: 15px 0;
+	}
+
+	#site-branding,
+	#content .wrapper,
+	.hentry,
+	.no-results,
+	.not-found,
+	.sidebar,
+	#comments,
+	#nav-below,
+	#infinite-handle,
+	#supplementary .widget {
+		padding: 15px;
+	}
+
+	#featured-content,
+	#supplementary {
+		padding-top:  15px;
+	}
+
+	.fullframe-nav-menu a,
+	.sidebar-header-right .widget_nav_menu a {
+	    padding: 10px 15px;
+	}
+
+	#main {
+	    width: 680px;
+	}
+
+	.sidebar-primary {
+	    width: 330px;
+	}
+
+}
+
+/*--------------------------------------------------------------
+5. x <= 1100px (iPad Landscape)
+--------------------------------------------------------------*/
+@media screen and (max-width: 1100px) {
+	.wrapper {
+		width: 960px;
+	}
+
+	#main {
+	    width: 600px;
+	}
+
+	#feature-slider .cycle-prev,
+	#feature-slider:hover .cycle-prev {
+	    left: 40px;
+	    opacity: 1;
+	}
+
+	#feature-slider .cycle-next,
+	#feature-slider:hover .cycle-next {
+	    right: 40px;
+	    opacity: 1;
+	}
+
+	#feature-slider .cycle-prev:before,
+	#feature-slider .cycle-next:before {
+		font-size: 25px;
+	    line-height: 30px;
+	    width: 30px;
+	    height: 30px;
+	}
+
+}
+
+/*--------------------------------------------------------------
+6. x <= 990px (iPad Portrait)
+--------------------------------------------------------------*/
+@media screen and (max-width: 990px) {
+	.wrapper {
+		width: 740px;
+	}
+
+	#logo-icon {
+	    text-align: center;
+	    width: 612px;
+	}
+
+	.no-mobile-left-menu #logo-icon {
+    	margin-left: 44px;
+	}
+
+	.no-mobile-right-menu #logo-icon {
+		margin-right: 44px;
+	}
+
+	.no-mobile-left-menu.no-mobile-right-menu #logo-icon {
+		margin: 0;
+		width: 100%
+	}
+
+	#masthead {
+	    padding: 10px 0;
+	}
+
+	#feature-slider .entry-container {
+		bottom: 35px;
+	}
+
+	#site-branding {
+    	padding: 5px 10px 0 10px;
+	}
+
+	#masthead .sidebar-header-right {
+	    padding: 10px 10px 0;
+	}
+
+	#promotion-message .right a {
+	    padding: 8px 15px;
+	}
+
+	#featured-content, #supplementary {
+	    padding-top: 10px;
+	}
+
+	#featured-content .featured-heading-wrap {
+	    padding: 10px 10px 0;
+	}
+
+	#feature-slider .entry-container,
+	#promotion-message .section,
+	#content .wrapper,
+	.hentry,
+	.no-results,
+	.not-found,
+	.sidebar,
+	#comments,
+	#nav-below,
+	#infinite-handle,
+	#supplementary .widget,
+	#site-generator {
+		padding: 0px;
+	}
+
+	.genericon-menu {
+		padding: 12px;
+	}
+
+	.hentry,
+	.widget {
+		margin: 0 0 1em;
+	}
+
+	#featured-content .entry-container {
+		margin-top: 10px;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-bottom: 5px;
+	}
+
+	p {
+	    margin-bottom: 10px;
+	}
+
+	.hentry .featured-image {
+	    margin-bottom: 15px;
+	}
+
+	.archive-post-wrap {
+	    padding-bottom: 10px;
+	}
+
+	.site-title {
+	    font-size: 30px;
+	}
+
+	h1 {
+		font-size: 26px;
+	}
+
+	h2 {
+		font-size: 24px;
+	}
+
+	h3 {
+		font-size: 22px;
+	}
+
+	h4 {
+		font-size: 18px;
+	}
+
+	h5 {
+		font-size: 16px;
+	}
+
+	h6 {
+		font-size: 14px;
+	}
+
+	.entry-title,
+	#promotion-message h2,
+	#featured-content #featured-heading {
+		font-size: 24px;
+	}
+
+	#featured-content .entry-title {
+		font-size: 20px;
+	}
+
+	#site-generator {
+		font-size: 13px;
+	}
+
+	#site-branding,
+	#main,
+	.no-sidebar.content-width #main,
+	.sidebar-primary {
+	    width: 100%;
+	}
+
+	.sidebar-primary {
+		clear: both;
+		padding: 0;
+	}
+
+	.sidebar-primary .widget,
+	#featured-content.layout-four .hentry,
+	#supplementary.four .widget-area,
+	#supplementary.three .widget-area,
+	#supplementary.two .widget-area {
+	    float: left;
+	    padding: 10px;
+	    width: 50%;
+	}
+
+	.one-column .layout-four .featured-content-wrap {
+	    margin-left: 0;
+	    width: 100%;
+	}
+
+	.one-column #featured-content.layout-four .hentry {
+		float: left;
+		margin-left: 0;
+	    padding: 10px;
+	    width: 50%;
+	}
+
+	.sidebar-primary .widget:nth-child(2n+1),
+	#featured-content.layout-four .hentry:nth-child(2n+1),
+	#supplementary .widget-area:nth-child(2n+1) {
+		clear: both;
+	}
+
+	#supplementary.four .widget-area,
+	#supplementary.three .widget-area,
+	#supplementary.two .widget-area {
+		padding: 0;
+	}
+
+	.mobile-menu-anchor {
+		display: inline-block;
+	}
+
+	#site-logo,
+	#site-header {
+		display: block;
+	    float: none;
+	}
+
+	.logo-left #site-header {
+		padding-top: 8px;
+		padding-left: 0;
+	}
+
+	.logo-right #site-header {
+		padding-top:  10px;
+		padding-right: 0;
+	}
+
+	#site-logo img {
+		max-height: 150px;
+	}
+
+	/* Sidebar Header Right */
+	.sidebar-header-right {
+	    clear: both;
+	    display: inline-block;
+	    float: none;
+	    text-align: center;
+	    width: 100%;
+	}
+
+	.sidebar-header-right .widget-wrap {
+	    float: none;
+	}
+	.mobile-header-left-nav-open #fixed-header {
+		left: 260px;
+	}
+	.nav-primary .menu,
+	.nav-header-right,
+	.nav-secondary,
+	.nav-footer {
+		display: none;
+	}
+
+	#site-branding {
+	    text-align: center;
+	}
+
+	#mobile-secondary-menu {
+		display: block;
+		width: 100%;
+	}
+
+	#mobile-footer-menu {
+	    border-top: 1px solid #eee;
+	    display: block;
+	    padding: 0 10px;
+	    width: 100%;
+	}
+
+	#feature-slider .cycle-prev,
+	#feature-slider:hover .cycle-prev {
+	    left: 20px;
+	    opacity: 1;
+	}
+
+	#feature-slider .cycle-next,
+	#feature-slider:hover .cycle-next {
+	    right: 20px;
+	    opacity: 1;
+	}
+
+	#feature-slider .cycle-prev:before,
+	#feature-slider .cycle-next:before {
+		font-size: 25px;
+	    line-height: 30px;
+	    width: 30px;
+	    height: 30px;
+	}
+}
+
+/*--------------------------------------------------------------
+7. x <= 782px
+--------------------------------------------------------------*/
+@media screen and (max-width:782px){
+	.admin-bar #fixed-header {
+	    top: 45px;
+	}
+}
+
+/*--------------------------------------------------------------
+8. x <= 767px
+--------------------------------------------------------------*/
+@media screen and (max-width: 767px) {
+	.wrapper {
+		width: 660px;
+	}
+
+	#logo-icon {
+	    width: 532px;
+	}
+
+	#supplementary {
+		height: 1%;
+		overflow: hidden;
+	}
+
+}
+
+/*--------------------------------------------------------------
+9. x <= 700px
+--------------------------------------------------------------*/
+@media screen and (max-width: 700px) {
+	.wrapper {
+		width: 560px;
+	}
+
+	#logo-icon {
+	    width: 432px;
+	}
+
+	#footer-left-content,
+	#footer-right-content {
+		display: block;
+		text-align: center;
+	    width: 100%;
+	}
+	#footer-right-content {
+		padding-top: 0;
+	}
+
+}
+
+/*--------------------------------------------------------------
+10. x <= 600px (iPhone 5 Landscape)
+--------------------------------------------------------------*/
+@media screen and (max-width:600px) {
+	.wrapper {
+		width: 520px;
+	}
+
+	#logo-icon {
+	    width: 392px;
+	}
+
+	#feature-slider .entry-container {
+	    padding: 5px;
+	}
+
+	.site-title {
+	    font-size: 26px;
+	}
+
+	h1 {
+		font-size: 24px;
+	}
+
+	h2 {
+		font-size: 22px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	h4 {
+		font-size: 18px;
+	}
+
+	h5 {
+		font-size: 16px;
+	}
+
+	h6 {
+		font-size: 14px;
+	}
+
+	.entry-title,
+	#promotion-message h2,
+	#featured-content #featured-heading {
+		font-size: 22px;
+	}
+
+	#featured-content .entry-title {
+		font-size: 18px;
+	}
+
+	#feature-slider .entry-content {
+		display: none;
+	}
+
+	#feature-slider .cycle-pager span {
+	    font-size: 40px;
+	}
+
+}
+
+/*--------------------------------------------------------------
+11. x <= 540px (iPhone 4 Landscape)
+--------------------------------------------------------------*/
+@media screen and (max-width: 540px) {
+	.wrapper {
+		width: 460px;
+	}
+
+	#logo-icon {
+	    width: 332px;
+	}
+
+	body,
+	button,
+	input,
+	select,
+	textarea {
+	    font-size: 14px;
+	}
+
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+		font-size: 14px;
+	}
+
+	.site-title {
+	    font-size: 24px;
+	}
+
+	h1 {
+		font-size: 22px;
+	}
+
+	h2 {
+		font-size: 20px;
+	}
+
+	h3 {
+		font-size: 18px;
+	}
+
+	h4 {
+		font-size: 16px;
+	}
+
+	h5 {
+		font-size: 14px;
+	}
+
+	h6 {
+		font-size: 13px;
+	}
+
+	.entry-title,
+	#promotion-message h2,
+	#featured-content #featured-heading {
+		font-size: 20px;
+	}
+
+	#featured-content .entry-title {
+		font-size: 18px;
+	}
+
+	#feature-slider .entry-title {
+	    font-size: 16px;
+	    margin-bottom: 0;
+	}
+
+}
+
+/*--------------------------------------------------------------
+12. x <= 479px (iPhone Portrait)
+--------------------------------------------------------------*/
+@media screen and (max-width: 479px) {
+	.wrapper {
+		width: 400px;
+	}
+
+	#logo-icon {
+	    width: 272px;
+	}
+
+	#site-branding {
+		padding-top: 0;
+	}
+
+	#content-prev, #content-next {
+	    font-size: 20px;
+	    line-height: 10px;
+	}
+
+	#content .has-post-thumbnail .archive-post-wrap .featured-image,
+	#content .has-post-thumbnail .archive-post-wrap .entry-container,
+	#promotion-message .section,
+	.sidebar-primary .widget,
+	#featured-content.layout-four .hentry,
+	#featured-content.layout-three .hentry,
+	#supplementary.four .widget-area,
+	#supplementary.three .widget-area,
+	#supplementary.two .widget-area,
+	.one-column #featured-content.layout-four .hentry {
+		display: block;
+	    float: none;
+	    width: 100%;
+	}
+
+	#promotion-message .section {
+		max-width: 100%;
+	}
+
+	#promotion-message .left {
+		padding-bottom: 0;
+	}
+
+	#promotion-message .right {
+		padding-top: 0;
+	}
+
+	.entry-meta, .site-description {
+	    font-size: 12px;
+	}
+
+	#site-generator {
+		font-size: 11px;
+	}
+
+}
+
+/*--------------------------------------------------------------
+13. x <= 400px
+--------------------------------------------------------------*/
+@media screen and (max-width: 400px) {
+	.wrapper {
+		width: 100%;
+		padding: 0 10px;
+	}
+
+	#logo-icon {
+	    width: 70%;
+	}
+
+	#masthead {
+		padding-top: 5px;
+	}
+}
+
+/*--------------------------------------------------------------
+14. x <= 319px
+--------------------------------------------------------------*/
+@media screen and (max-width: 319px) {
+	#logo-icon {
+	    width: 55%;
+	}
+
+	#masthead {
+		padding-top: 5px;
+	}
+
+	#site-branding,
+	.mobile-menu-one #site-branding,
+	.mobile-menu-two #site-branding {
+		clear: both;
+		display: block;
+	    padding: 0;
+	    width: 100%;
+	}
+
+	#masthead .sidebar-header-right {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	body,
+	button,
+	input,
+	select,
+	textarea {
+	    font-size: 13px;
+	}
+
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+		font-size: 13px;
+	}
+
+	.site-title {
+	    font-size: 22px;
+	}
+
+	h1 {
+		font-size: 20px;
+	}
+
+	h2 {
+		font-size: 18px;
+	}
+
+	h3 {
+		font-size: 16px;
+	}
+
+	h4 {
+		font-size: 14px;
+	}
+
+	h5 {
+		font-size: 13px;
+	}
+
+	h6 {
+		font-size: 12px;
+	}
+
+	.entry-title,
+	#promotion-message h2,
+	#featured-content #featured-heading {
+		font-size: 18px;
+	}
+
+	#featured-content .entry-title {
+		font-size: 16px;
+	}
+
+	#feature-slider .entry-title {
+	    font-size: 14px;
+	    margin-bottom: 0;
+	}
+
+}
+
+/*--------------------------------------------------------------
+15. Form Zoom Fix
+--------------------------------------------------------------*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	select:focus,
+	textarea:focus,
+	input:focus,
+	input#s,
+	#respond form input[type="text"],
+	#respond form textarea,
+	input[type="text"],
+	input[type="email"],
+	input[type="url"],
+	input[type="password"],
+	textarea {
+ 		font-size: 16px;
+  	}
+}
