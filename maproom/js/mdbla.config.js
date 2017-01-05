@@ -57,7 +57,8 @@
 	mdbla.department = 'LASD';
 	mdbla.map;
 	mdbla.layerCarto;
-	mdbla.cartoSubLayer;
+	mdbla.cartoSubLayer1;
+	mdbla.cartoSubLayer2;
 	mdbla.geographyIDColumn = {
 		'BlockGroups' : 'fips_1',
 		'LASDNeighborhoods' : 'slug',
@@ -81,7 +82,9 @@
 		// 'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/6c2a7b6c-5459-11e6-a6cd-0e233c30368f/viz.json'
 		// 'LASDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/95917d26-5b65-11e6-b8d9-0e233c30368f/viz.json'
 		'LASDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/95917d26-5b65-11e6-b8d9-0e233c30368f/viz.json',
-		'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/21c7ebb4-659c-11e6-b830-0e3ff518bd15/viz.json',
+		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/21c7ebb4-659c-11e6-b830-0e3ff518bd15/viz.json',
+		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/050c7c5a-b8e0-11e6-adaa-0ee66e2c9693/viz.json',
+		'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/25d1587c-d391-11e6-8d7f-0e233c30368f/viz.json',
 	}
 
 	// mapbox token

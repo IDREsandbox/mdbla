@@ -1,6 +1,7 @@
 
 mdbla.displayPrisonData = function()
 {
+	console.log('display prison data')
 	// let's resize the windows
 	mdbla.resize();
 
@@ -42,26 +43,43 @@ mdbla.displayPrisonData = function()
 	// let's add some waffles
 	$('#stats-content-prison2').html('');
 
+	/*
+		If it's LASD data, add the charges waffle, otherwise, leave it out
+		Also adjust the grids accordingly
+	*/
+	if(mdbla.geography == 'LASDNeighborhoods')
+	{
+		waffledivclass = 'col-md-4';
+	}
+	else // LAPD
+	{
+		waffledivclass = 'col-md-6';
+	}
+
 	// race waffle
 	var wafflevalues = {};
 	wafflevalues.title = 'Race';
 	wafflevalues.data = [mdbla.highlightedData._race_h,mdbla.highlightedData._race_b,mdbla.highlightedData._race_w,Number(mdbla.highlightedData._race_o2)]
 	wafflevalues.labels = ['Hispanic','Black','White','Other']
-	$('#stats-content-prison2').append('<div class="col-md-4">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
+	$('#stats-content-prison2').append('<div class="'+waffledivclass+'">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
 
 	// gender waffle
 	var wafflevalues = {};
 	wafflevalues.title = 'Gender';
 	wafflevalues.data = [mdbla.highlightedData._sex_m,mdbla.highlightedData._sex_f]
 	wafflevalues.labels = ['Male','Female']
-	$('#stats-content-prison2').append('<div class="col-md-4">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
+	$('#stats-content-prison2').append('<div class="'+waffledivclass+'">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
+
 
 	// charge waffle
-	var wafflevalues = {};
-	wafflevalues.title = 'Charge';
-	wafflevalues.data = [mdbla.highlightedData._charge_m,mdbla.highlightedData._charge_f,mdbla.highlightedData._charge_d,mdbla.highlightedData._charge_o]
-	wafflevalues.labels = ['Misdimeanor','Felony','D','O']
-	$('#stats-content-prison2').append('<div class="col-md-4">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
+	if(mdbla.geography == 'LASDNeighborhoods')
+	{
+		var wafflevalues = {};
+		wafflevalues.title = 'Charge';
+		wafflevalues.data = [mdbla.highlightedData._charge_m,mdbla.highlightedData._charge_f,mdbla.highlightedData._charge_d,mdbla.highlightedData._charge_o]
+		wafflevalues.labels = ['Misdimeanor','Felony','D','O']
+		$('#stats-content-prison2').append('<div class="'+waffledivclass+'">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
+	}
 
 }
 

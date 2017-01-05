@@ -156,9 +156,6 @@ mdbla.toggleGeography = function(geography)
 	console.log('toggling...')
 	mdbla.geography = geography;
 
-	// reset the map
-	mdbla.cartoSubLayer.hide()
-
 	// remove highlighted polygon
 	if(mdbla.highlightedPolygon) {mdbla.map.removeLayer(mdbla.highlightedPolygon)};
 
@@ -196,11 +193,11 @@ mdbla.toggleGeography = function(geography)
 
 	if(mdbla.geography == 'LASDNeighborhoods')
 	{
-		$('#display-geography').html('LASDNeighborhoods');
+		$('#display-geography').html('LASD');
 	}
 	else if (mdbla.geography == 'LAPDNeighborhoods')
 	{
-		$('#display-geography').html('LAPDNeighborhoods');
+		$('#display-geography').html('LAPD');
 	}
 
 	// add the layer control back to the map

@@ -75,7 +75,8 @@
 	mdbla.cartoLayerMap = {
 		'BlockGroups' : 'https://mdbla.carto.com/api/v2/viz/e610732a-59ca-11e6-8760-0ecd1babdde5/viz.json',
 		'LASDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/95917d26-5b65-11e6-b8d9-0e233c30368f/viz.json',
-		'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/21c7ebb4-659c-11e6-b830-0e3ff518bd15/viz.json',
+		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/21c7ebb4-659c-11e6-b830-0e3ff518bd15/viz.json',
+		'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/050c7c5a-b8e0-11e6-adaa-0ee66e2c9693/viz.json',
 
 	}
 
@@ -173,8 +174,8 @@ mdbla.clickFunctions = function()
 	$('#button-neighborhoods').click(function(){ mdbla.toggleGeography() })
 	$('#button-blockgroups').click(function(){ mdbla.toggleGeography() })
 	
-	$('#button-LASD').click(function(){ mdbla.toggleGeography('LASDNeighborhoods') })
-	$('#button-LAPD').click(function(){ mdbla.toggleGeography('LAPDNeighborhoods') })
+	$('#button-LASD').click(function(){ mdbla.toggleGeography('LASD') })
+	$('#button-LAPD').click(function(){ mdbla.toggleGeography('LAPD') })
 	$('#button-COMBINED').click(function(){ mdbla.toggleGeography() })
 
 	$('#button-prison').click(function(){ mdbla.activeTab = 'prison'; mdbla.displayPrisonData() })
@@ -222,13 +223,13 @@ mdbla.toggleGeography = function(geography)
 	$('#stats-content-daysinjail').empty();
 	$('#stats-content-rankings').empty();
 
-	if(mdbla.geography == 'LASDNeighborhoods')
+	if(mdbla.geography == 'LASD')
 	{
-		$('#display-geography').html('LASDNeighborhoods');
+		$('#display-geography').html('LASD');
 	}
-	else if (mdbla.geography == 'LAPDNeighborhoods')
+	else if (mdbla.geography == 'LAPD')
 	{
-		$('#display-geography').html('LAPDNeighborhoods');
+		$('#display-geography').html('LAPD');
 	}
 
 	// add the layer control back to the map
@@ -306,11 +307,15 @@ mdbla.cartoSQL = function(sql)
 ***/
 mdbla.setMap = function()
 {
+
+	console.log('removing...')
 	// remove layer if it exists
 	if(mdbla.cartoSubLayer)
 	{
 		mdbla.cartoSubLayer.hide()
 	}
+
+
 
 	$('#display-geography-title').empty();
 
@@ -323,10 +328,15 @@ mdbla.setMap = function()
 			// var v = cdb.vis.Overlay.create('search', mdbla.map.viz, {})
    //          v.show();
    //          $('#map').append(v.render().el);
-			mdbla.cartoLayers = layer;
-			mdbla.cartoSubLayer = layer.getSubLayer(0);
+	// Clear the sublayers
+	mdbla.cartoLayers.getSubLayers().forEach(function(sublayer){sublayer.remove()});
 
-			layer.on('featureClick',function(e, pos, latlng, data){
+
+				mdbla.cartoLayers = layer;
+				mdbla.cartoSubLayer = layer.getSubLayer(0);
+
+				layer.on('featureClick',function(e, pos, latlng, data){
+
 				// turn off the hovering and add a button to allow it back
 				mdbla.allowHover = false;
 

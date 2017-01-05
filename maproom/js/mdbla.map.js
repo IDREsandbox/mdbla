@@ -5,10 +5,11 @@
 ***/
 mdbla.setMap = function()
 {
+
 	// remove layer if it exists
-	if(mdbla.cartoSubLayer)
+	if(mdbla.cartoLayers)
 	{
-		mdbla.cartoSubLayer.hide()
+		mdbla.cartoLayers.remove()
 	}
 
 	$('#display-geography-title').empty();
@@ -18,7 +19,6 @@ mdbla.setMap = function()
 		.on('done',function(layer){
 	
 			mdbla.cartoLayers = layer;
-			mdbla.cartoSubLayer = layer.getSubLayer(0);
 
 			layer.on('featureClick',function(e, pos, latlng, data){
 				// turn off the hovering and add a button to allow it back
@@ -44,6 +44,8 @@ mdbla.setMap = function()
 				// only refresh the data if we hover over a new feature
 				if(mdbla.highlightedGeographyID != data[mdbla.geographyIDColumn[mdbla.geography]] && mdbla.allowHover)
 				{
+					console.log('hovering...')
+					console.log(data)
 					// assign map actions
 					mdbla.mapAction(data);
 
