@@ -85,7 +85,7 @@ mdbla.displayPrisonData = function()
 
 mdbla.displayCharges = function()
 {
-	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM lasd_2010_2015_bookings2 WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
+	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
 	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
 	// display charges
 	var sql = $.getJSON('https://mdbla.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey, function(data) {

@@ -76,6 +76,10 @@
 		'LASDNeighborhoods' : 'lasd_2010_2015_by_neighborhoods_merge',
 		'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods',
 	}
+	mdbla.cartoBookingsTable = {
+		'LASDNeighborhoods' : 'lasd_2010_2015_bookings2',
+		'LAPDNeighborhoods' : 'lapd_2010_2015_01052017_v2',
+	}
 	mdbla.cartoLayerMap = {
 		// 'BlockGroups' : 'https://mdbla.carto.com/api/v2/viz/7c32ed80-4eb6-11e6-a745-0e05a8b3e3d7/viz.json',
 		'BlockGroups' : 'https://mdbla.carto.com/api/v2/viz/e610732a-59ca-11e6-8760-0ecd1babdde5/viz.json',
