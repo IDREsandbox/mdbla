@@ -5,7 +5,7 @@
 ***/
 	var mdbla = {};
 	mdbla.activeTab = 'prison';
-	mdbla.fipsarray = [];
+	mdbla.slugarray = [];
 	mdbla.jailarray = [];
 	mdbla.jailranks;
 	mdbla.bookingsarray = [];
@@ -74,7 +74,8 @@
 	mdbla.cartoLayerTable = {
 		'BlockGroups' : 'lasd_2010_2015_by_block_group',
 		'LASDNeighborhoods' : 'lasd_2010_2015_by_neighborhoods_merge',
-		'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods',
+		// 'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods',
+		'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods_merge_12012016_v2',
 	}
 	mdbla.cartoBookingsTable = {
 		'LASDNeighborhoods' : 'lasd_2010_2015_bookings2',

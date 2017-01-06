@@ -5,10 +5,10 @@ mdbla.displayPrisonData = function()
 	// let's resize the windows
 	mdbla.resize();
 
-	var fipsposition = mdbla.fipsarray.indexOf(mdbla.highlightedData.fips);
-	var jailranking = mdbla.jailranks[fipsposition];
-	var bookingsranking = mdbla.bookingsranks[fipsposition];
-	var costranking = mdbla.costranks[fipsposition];
+	var slugposition = mdbla.slugarray.indexOf(mdbla.highlightedData.slug);
+	var jailranking = mdbla.jailranks[slugposition];
+	var bookingsranking = mdbla.bookingsranks[slugposition];
+	var costranking = mdbla.costranks[slugposition];
 
 	// Cost of incarceration
 	var html = '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><br>Cost of incarceration</div>';
@@ -339,7 +339,7 @@ mdbla.displayRankings = function()
 		var thisrowhtml = '';
 
 		// add each data params to the tr
-		thisrowhtml += '<tr id="ranking-'+val.fips+'" onmouse data-cost='+cost+' data-arrests='+val._bookings+' data-jaildays='+val._jaildays+' data-pop2010='+val.pop2010+'>';
+		thisrowhtml += '<tr id="ranking-'+val.slug+'" onmouse data-cost='+cost+' data-arrests='+val._bookings+' data-jaildays='+val._jaildays+' data-pop2010='+val.pop2010+'>';
 		// rank and name
 		thisrowhtml += '<td>'+(i+1)+'</td><td class="name">'+val.name+'</td>';
 		// cost
@@ -355,27 +355,27 @@ mdbla.displayRankings = function()
 		
 		$('#ranking-list').append(thisrowhtml);
 
-		$('#ranking-'+val.fips).mouseover(function(event) {
-			// mdbla.highlightPolygon(val.fips);
+		$('#ranking-'+val.slug).mouseover(function(event) {
+			// mdbla.highlightPolygon(val.slug);
 			// let's change the cursor cuz that hand is too vague
 
 			$('#map').css('cursor', 'pointer');
 
 			// only refresh the data if we hover over a new feature
-			if(mdbla.highlightedGeographyID != val.fips && mdbla.allowHover)
+			if(mdbla.highlightedGeographyID != val.slug && mdbla.allowHover)
 			{
 				// assign map actions
 				// mdbla.mapAction(val);
 
 				// highlight the polygon
-				mdbla.highlightPolygon(val.fips,false);
+				mdbla.highlightPolygon(val.slug,false);
 			}
 		});
-		$('#ranking-'+val.fips).mouseout(function(event) {
-			$('#ranking-'+val.fips).css('background-color','white')
+		$('#ranking-'+val.slug).mouseout(function(event) {
+			$('#ranking-'+val.slug).css('background-color','white')
 		});
-		$('#ranking-'+val.fips).click(function(event) {
-			// mdbla.highlightPolygon(val.fips,true);
+		$('#ranking-'+val.slug).click(function(event) {
+			// mdbla.highlightPolygon(val.slug,true);
 			// turn off the hovering and add a button to allow it back
 
 			mdbla.allowHover = false;
@@ -387,7 +387,7 @@ mdbla.displayRankings = function()
 			mdbla.createBookmark();
 
 			// highlight the polygon
-			mdbla.highlightPolygon(val.fips,true);
+			mdbla.highlightPolygon(val.slug,true);
 
 		});
 	})

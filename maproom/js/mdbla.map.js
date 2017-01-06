@@ -117,7 +117,7 @@ mdbla.scrollToRanking = function(id)
 
 mdbla.highlightPolygon = function(id,zoomornot)
 {
-	console.log('higlighting '+id)
+	console.log('highlighting '+id)
 	if(mdbla.activeTab == 'rankings') mdbla.highlightRanking(id);
 
 	mdbla.highlightedPolygonStyle = {

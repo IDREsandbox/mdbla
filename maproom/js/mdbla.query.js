@@ -71,11 +71,12 @@ $( function()
 ***/
 mdbla.cartoSQL = function(sql)
 {
+	console.log('in cartoSQL...')
 	// some summary stuff sql
 	var sql_statement1 = 'SELECT MAX(_jaildays) as jailmax,MIN(_jaildays) as jailmin,SUM(_jaildays) as jailsum,MAX(_bookings) as bookingsmax,MIN(_bookings) as bookingsmin,AVG(_jaildays) as "jailavg",AVG(_bookings) as "bookingsavg",SUM(_bookings) as "bookingssum",MAX(_cost) as "costmax",MIN(_cost) as "costmin",AVG(_cost) as "costavg",SUM(_cost) as "costsum",MAX(pop2010) as "pop2010max",MIN(pop2010) as "pop2010min",AVG(pop2010) as "pop2010avg",SUM(pop2010) as "pop2010sum" FROM '+mdbla.cartoLayerTable[mdbla.geography]+'';
 
 	// main data sql
-	// var sql_statement2 = 'SELECT name,fips,_bookings,_jaildays,_cost FROM '+mdbla.cartoLayerTable[mdbla.geography]+' ORDER BY _cost DESC ';
+	// var sql_statement2 = 'SELECT name,slug,_bookings,_jaildays,_cost FROM '+mdbla.cartoLayerTable[mdbla.geography]+' ORDER BY _cost DESC ';
 	var sql_statement2 = 'SELECT * FROM '+mdbla.cartoLayerTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' is not null ORDER BY _cost DESC';
 
 	// get geojson for each polygon

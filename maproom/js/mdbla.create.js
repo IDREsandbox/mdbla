@@ -54,7 +54,7 @@ mdbla.createRankings = function()
 		mdbla.jailarray.push(val._jaildays)
 		mdbla.bookingsarray.push(val._bookings)
 		mdbla.costarray.push(val._cost)
-		mdbla.fipsarray.push(val.fips)
+		mdbla.slugarray.push(val.slug)
 	})
 	var jailsorted = mdbla.jailarray.slice().sort(function(a,b){return a-b})
 	mdbla.jailranks = mdbla.jailarray.slice().map(function(v){ return jailsorted.indexOf(v)+1 });
@@ -130,6 +130,6 @@ mdbla.createNeighborhoodDropdown = function()
 	});
 
 	$.each(mdbla.data[mdbla.geography].rows,function(i,val){
-		$('#dropdown-neighborhood').append('<li><a href="#" onclick="mdbla.highlightPolygon(\''+val.fips+'\')">'+val.name+'</a></li>')
+		$('#dropdown-neighborhood').append('<li><a href="#" onclick="mdbla.highlightPolygon(\''+val.slug+'\')">'+val.name+'</a></li>')
 	})
 }
