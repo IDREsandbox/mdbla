@@ -79,7 +79,7 @@ mdbla.mapAction = function(data)
 	mdbla.highlightedGeographyName = data.name;
 
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'</div>';
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(data._bookings)+'</div>';
 	$('#display-geography-title').html(html);
 
 	// // populate the title box
@@ -95,8 +95,8 @@ mdbla.mapAction = function(data)
 	// keeping "rankings" out of this functionality
 	switch (mdbla.activeTab)
 	{
-		case 'prison': mdbla.displayPrisonData(); break;
-		case 'charges' : mdbla.displayCharges(); break;
+		case 'Jail Data': mdbla.displayPrisonData(); break;
+		case 'Charges' : mdbla.displayCharges(); break;
 		case 'timeline' : mdbla.displayTimeline(); break;
 		case 'daysinjail' : mdbla.displayDaysInJailChart(); break;
 		// case 'rankings' : mdbla.displayRankings(); break;
@@ -121,7 +121,7 @@ mdbla.scrollToRanking = function(id)
 mdbla.highlightPolygon = function(id,zoomornot)
 {
 	console.log('highlighting '+id)
-	if(mdbla.activeTab == 'rankings') mdbla.highlightRanking(id);
+	if(mdbla.activeTab == 'Rankings') mdbla.highlightRanking(id);
 
 	mdbla.highlightedPolygonStyle = {
 		weight: 3,

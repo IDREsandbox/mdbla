@@ -141,11 +141,11 @@ mdbla.clickFunctions = function()
 	$('#button-LAPD').click(function(){ mdbla.toggleGeography('LAPDNeighborhoods') })
 	$('#button-LBPD').click(function(){ mdbla.toggleGeography('LBPDNeighborhoods') })
 
-	$('#button-prison').click(function(){ mdbla.activeTab = 'prison'; mdbla.displayPrisonData() })
-	$('#button-charges').click(function(){ mdbla.activeTab = 'charges'; mdbla.displayCharges() })
+	$('#button-prison').click(function(){ mdbla.activeTab = 'Jail Data'; mdbla.displayPrisonData() })
+	$('#button-charges').click(function(){ mdbla.activeTab = 'Charges'; mdbla.displayCharges() })
 	$('#button-timeline').click(function(){ mdbla.activeTab = 'timeline'; mdbla.displayTimeline() })
 	$('#button-daysinjail').click(function(){ mdbla.activeTab = 'daysinjail'; mdbla.displayDaysInJailChart() })
-	$('#button-rankings').click(function(){ mdbla.activeTab = 'rankings'; mdbla.displayRankings() })
+	$('#button-rankings').click(function(){ mdbla.activeTab = 'Rankings'; mdbla.displayRankings() })
 }
 
 /***
@@ -196,15 +196,15 @@ mdbla.toggleGeography = function(geography)
 
 	if(mdbla.geography == 'LASDNeighborhoods')
 	{
-		$('#display-geography').html('LASD');
+		$('#display-geography').html("Los Angeles Sheriff's Department (LASD) <span class='caret'></span>");
 	}
 	else if (mdbla.geography == 'LAPDNeighborhoods')
 	{
-		$('#display-geography').html('LAPD');
+		$('#display-geography').html('Los Angeles Police Department (LAPD) <span class="caret"></span>');
 	}
 	else if (mdbla.geography == 'LBPDNeighborhoods')
 	{
-		$('#display-geography').html('LBPD');
+		$('#display-geography').html('Long Beach Police Department (LBPD) <span class="caret"></span>');
 	}
 
 	// add the layer control back to the map

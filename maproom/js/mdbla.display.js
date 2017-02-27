@@ -85,7 +85,7 @@ mdbla.displayPrisonData = function()
 
 mdbla.displayCharges = function()
 {
-	$('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
+	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
 	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
 	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
 	// display charges

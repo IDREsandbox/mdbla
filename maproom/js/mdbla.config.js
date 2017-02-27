@@ -4,7 +4,7 @@
 
 ***/
 	var mdbla = {};
-	mdbla.activeTab = 'prison';
+	mdbla.activeTab = 'Jail Data';
 	mdbla.slugarray = [];
 	mdbla.jailarray = [];
 	mdbla.jailranks;
