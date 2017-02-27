@@ -1,6 +1,10 @@
 
 mdbla.displayPrisonData = function()
 {
+	// populate the title box
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	$('#display-geography-title').html(html);	
+
 	console.log('display prison data')
 	// let's resize the windows
 	mdbla.resize();
@@ -85,6 +89,10 @@ mdbla.displayPrisonData = function()
 
 mdbla.displayCharges = function()
 {
+	// populate the title box
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	$('#display-geography-title').html(html);	
+
 	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
 	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
 	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
@@ -281,6 +289,9 @@ mdbla.displayDaysInJailChart = function()
 
 mdbla.displayRankings = function()
 {
+	// populate the title box
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	$('#display-geography-title').html(html);	
 	console.log('displaying rankings...')
 	// clear container
 	$('#stats-content-rankings').empty();

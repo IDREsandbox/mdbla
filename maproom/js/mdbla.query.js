@@ -137,15 +137,16 @@ mdbla.clickFunctions = function()
 	$('#button-neighborhoods').click(function(){ mdbla.toggleGeography() })
 	$('#button-blockgroups').click(function(){ mdbla.toggleGeography() })
 
+	// police departments
 	$('#button-LASD').click(function(){ mdbla.toggleGeography('LASDNeighborhoods') })
 	$('#button-LAPD').click(function(){ mdbla.toggleGeography('LAPDNeighborhoods') })
 	$('#button-LBPD').click(function(){ mdbla.toggleGeography('LBPDNeighborhoods') })
 
+	// tabs
 	$('#button-prison').click(function(){ mdbla.activeTab = 'Jail Data'; mdbla.displayPrisonData() })
 	$('#button-charges').click(function(){ mdbla.activeTab = 'Charges'; mdbla.displayCharges() })
-	$('#button-timeline').click(function(){ mdbla.activeTab = 'timeline'; mdbla.displayTimeline() })
-	$('#button-daysinjail').click(function(){ mdbla.activeTab = 'daysinjail'; mdbla.displayDaysInJailChart() })
 	$('#button-rankings').click(function(){ mdbla.activeTab = 'Rankings'; mdbla.displayRankings() })
+
 }
 
 /***

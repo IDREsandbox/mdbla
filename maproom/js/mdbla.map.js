@@ -80,7 +80,7 @@ mdbla.mapAction = function(data)
 
 	// populate the title box
 	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(data._bookings)+'</div>';
-	$('#display-geography-title').html(html);
+	// $('#display-geography-title').html(html);
 
 	// // populate the title box
 	// var percentPop = Math.round(data.pop2010/mdbla.summary[mdbla.geography].pop2010sum*100);
@@ -88,7 +88,6 @@ mdbla.mapAction = function(data)
 	// var percentCost = Math.round(data._cost/mdbla.summary[mdbla.geography].costsum*100);
 	// var html = '<div class="stats-title">'+mdbla.highlightedGeographyName+'</div><div class="well"><span class="stats-number">'+percentPop+'%</span> of Los Angeles County population, <span class="stats-number">'+percentBooked+'%</span> of all jail bookings and <span class="stats-number">'+percentCost+'%</span> of total costs</div>';
 
-	$('#display-geography-title').html(html);
 
 	// process data for active tab only
 	// tabs with switches here enables the data to be refreshed as user hovers over map (data intensive)
@@ -101,6 +100,8 @@ mdbla.mapAction = function(data)
 		case 'daysinjail' : mdbla.displayDaysInJailChart(); break;
 		// case 'rankings' : mdbla.displayRankings(); break;
 	}
+	$('#display-geography-title').html(html);
+
 }
 
 mdbla.highlightRanking = function(id)
