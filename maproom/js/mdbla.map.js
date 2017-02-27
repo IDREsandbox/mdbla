@@ -17,7 +17,9 @@ mdbla.setMap = function()
 	mdbla.layerCarto = cartodb.createLayer(mdbla.map, mdbla.cartoLayerMap[mdbla.geography],{legends:false,zIndex:2})
 		.addTo(mdbla.map)
 		.on('done',function(layer){
-	
+			console.log('carto layer mapped...')
+			console.log(layer)
+			console.log(layer.getSubLayer(0))
 			mdbla.cartoLayers = layer;
 
 			layer.on('featureClick',function(e, pos, latlng, data){
@@ -38,6 +40,7 @@ mdbla.setMap = function()
 			})
 			.on('featureOver', function(e, latlng, pos, data) 
 			{
+				console.log('hover on...')
 				// let's change the cursor cuz that hand is too vague
 				$('#map').css('cursor', 'pointer');
 
@@ -54,7 +57,7 @@ mdbla.setMap = function()
 				}
 			})
 			.on('load',function(){
-				console.log('map is loaded')
+				console.log(mdbla.geography + 'layer is loaded')
 				// add labels
 				// if(mdbla.layerLabel == undefined)
 				// {

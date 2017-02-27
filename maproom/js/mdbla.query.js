@@ -71,7 +71,8 @@ $( function()
 ***/
 mdbla.cartoSQL = function(sql)
 {
-	console.log('in cartoSQL...')
+
+	console.log('in cartoSQL...' + mdbla.geography)
 	// some summary stuff sql
 	var sql_statement1 = 'SELECT MAX(_jaildays) as jailmax,MIN(_jaildays) as jailmin,SUM(_jaildays) as jailsum,MAX(_bookings) as bookingsmax,MIN(_bookings) as bookingsmin,AVG(_jaildays) as "jailavg",AVG(_bookings) as "bookingsavg",SUM(_bookings) as "bookingssum",MAX(_cost) as "costmax",MIN(_cost) as "costmin",AVG(_cost) as "costavg",SUM(_cost) as "costsum",MAX(pop2010) as "pop2010max",MIN(pop2010) as "pop2010min",AVG(pop2010) as "pop2010avg",SUM(pop2010) as "pop2010sum" FROM '+mdbla.cartoLayerTable[mdbla.geography]+'';
 
@@ -121,7 +122,7 @@ mdbla.cartoSQL = function(sql)
 	else
 	{
 		// data is got. now create the rankings and start the mapping
-		mdbla.createRankings();
+		// mdbla.createRankings();
 		mdbla.setMap();		
 	}
 }
@@ -138,6 +139,7 @@ mdbla.clickFunctions = function()
 
 	$('#button-LASD').click(function(){ mdbla.toggleGeography('LASDNeighborhoods') })
 	$('#button-LAPD').click(function(){ mdbla.toggleGeography('LAPDNeighborhoods') })
+	$('#button-LBPD').click(function(){ mdbla.toggleGeography('LBPDNeighborhoods') })
 
 	$('#button-prison').click(function(){ mdbla.activeTab = 'prison'; mdbla.displayPrisonData() })
 	$('#button-charges').click(function(){ mdbla.activeTab = 'charges'; mdbla.displayCharges() })
@@ -154,7 +156,7 @@ mdbla.clickFunctions = function()
 ***/
 mdbla.toggleGeography = function(geography)
 {
-	console.log('toggling...')
+	console.log('toggling to :: '+geography)
 	mdbla.geography = geography;
 
 	// remove highlighted polygon
@@ -199,6 +201,10 @@ mdbla.toggleGeography = function(geography)
 	else if (mdbla.geography == 'LAPDNeighborhoods')
 	{
 		$('#display-geography').html('LAPD');
+	}
+	else if (mdbla.geography == 'LBPDNeighborhoods')
+	{
+		$('#display-geography').html('LBPD');
 	}
 
 	// add the layer control back to the map

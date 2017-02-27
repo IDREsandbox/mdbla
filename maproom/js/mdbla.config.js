@@ -63,6 +63,7 @@
 		'BlockGroups' : 'fips_1',
 		'LASDNeighborhoods' : 'slug',
 		'LAPDNeighborhoods' : 'slug',
+		'LBPDNeighborhoods' : 'slug',
 	}
 
 /*
@@ -76,10 +77,12 @@
 		'LASDNeighborhoods' : 'lasd_2010_2015_by_neighborhoods_merge',
 		// 'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods',
 		'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods_merge_12012016_v2',
+		'LBPDNeighborhoods' : 'lbpd_neighborhoods_2017_02_22',
 	}
 	mdbla.cartoBookingsTable = {
 		'LASDNeighborhoods' : 'lasd_2010_2015_bookings2',
 		'LAPDNeighborhoods' : 'lapd_2010_2015_01052017_v2',
+		'LBPDNeighborhoods' : 'lbpd_geocode_01_03_17',
 	}
 	mdbla.cartoLayerMap = {
 		// 'BlockGroups' : 'https://mdbla.carto.com/api/v2/viz/7c32ed80-4eb6-11e6-a745-0e05a8b3e3d7/viz.json',
@@ -90,6 +93,8 @@
 		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/21c7ebb4-659c-11e6-b830-0e3ff518bd15/viz.json',
 		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/050c7c5a-b8e0-11e6-adaa-0ee66e2c9693/viz.json',
 		'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/25d1587c-d391-11e6-8d7f-0e233c30368f/viz.json',
+		'LBPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/19e33948-f936-11e6-89cc-0e233c30368f/viz.json',
+		// 'LBPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/3c9fa2a3-6662-4c83-96a6-67c3a2eff0f4/viz.json',
 	}
 
 	// mapbox token
