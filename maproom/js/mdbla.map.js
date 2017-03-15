@@ -79,7 +79,7 @@ mdbla.mapAction = function(data)
 	mdbla.highlightedGeographyName = data.name;
 
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(data._bookings)+'</div>';
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'</div>';
 	// $('#display-geography-title').html(html);
 
 	// // populate the title box

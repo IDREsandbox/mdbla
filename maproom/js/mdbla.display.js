@@ -2,7 +2,7 @@
 mdbla.displayPrisonData = function()
 {
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
 	$('#display-geography-title').html(html);	
 
 	console.log('display prison data')
@@ -90,7 +90,7 @@ mdbla.displayPrisonData = function()
 mdbla.displayCharges = function()
 {
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
 	$('#display-geography-title').html(html);	
 
 	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
@@ -290,7 +290,7 @@ mdbla.displayDaysInJailChart = function()
 mdbla.displayRankings = function()
 {
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+' '+mdbla.activeTab+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'<br>'+'Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings)+'</div>';
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
 	$('#display-geography-title').html(html);	
 	console.log('displaying rankings...')
 	// clear container
