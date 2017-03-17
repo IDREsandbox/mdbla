@@ -51,7 +51,7 @@ mdbla.displayPrisonData = function()
 		If it's LASD data, add the charges waffle, otherwise, leave it out
 		Also adjust the grids accordingly
 	*/
-	if(mdbla.geography == 'LASDNeighborhoods')
+	if(mdbla.geography == 'LASDNeighborhoods' || mdbla.geography == 'LBPDNeighborhoods')
 	{
 		waffledivclass = 'col-md-4';
 	}
@@ -76,19 +76,28 @@ mdbla.displayPrisonData = function()
 
 
 	// charge waffle
-	if(mdbla.geography == 'LASDNeighborhoods')
+	if(mdbla.geography == 'LASDNeighborhoods' || mdbla.geography == 'LBPDNeighborhoods')
 	{
 		var wafflevalues = {};
 		wafflevalues.title = 'Charge';
-		wafflevalues.data = [mdbla.highlightedData._charge_m,mdbla.highlightedData._charge_f,mdbla.highlightedData._charge_d,mdbla.highlightedData._charge_o]
-		wafflevalues.labels = ['Misdimeanor','Felony','D','O']
+		wafflevalues.data = [mdbla.highlightedData._charge_m,mdbla.highlightedData._charge_f,mdbla.highlightedData._charge_o]
+		wafflevalues.labels = ['Misdimeanor','Felony','Other']
 		$('#stats-content-prison2').append('<div class="'+waffledivclass+'">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
 	}
 
+	// mdbla.displayTopCharges() not working yet...
+
+	// $('#stats-content-prison2').append(mdbla.displayTopCharges());
+	// $('#stats-content-prison2').append('Top Charges:' + mdbla.displayTopCharges());
 }
 
-mdbla.displayCharges = function()
+mdbla.displayCharges = function(rowcount)
 {
+	if(rowcount === undefined)
+	{
+		rowcount = 100;
+	}
+
 	// populate the title box
 	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
 	$('#display-geography-title').html(html);	
@@ -103,7 +112,7 @@ mdbla.displayCharges = function()
 		// show charge data in table
 		html += '<table class="table table-condensed table-striped">';
 		$.each(data.rows,function(i,val){
-			if(i<100)
+			if(i<rowcount)
 			{
 				if (val.charge_des == '') 
 				{
@@ -119,6 +128,50 @@ mdbla.displayCharges = function()
 		})
 		html += '</table>';
 		$('#stats-content-charges').html(html);
+	})
+}
+
+mdbla.displayTopCharges = function(rowcount)
+{
+	if(rowcount === undefined)
+	{
+		rowcount = 5;
+	}
+
+	// populate the title box
+	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
+	$('#display-geography-title').html(html);	
+
+	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
+	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
+	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
+	// display charges
+	var sql = $.getJSON('https://mdbla.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey, function(data) {
+		console.log('top charges')
+		console.log(data)
+		// display the geography being charted
+		// show charge data in table
+		html += '<table class="table table-condensed table-striped">';
+		$.each(data.rows,function(i,val){
+			if(i<rowcount)
+			{
+				if (val.charge_des == '') 
+				{
+					var des = '<i>(blank in original dataset)</i>';
+				}
+				else
+				{
+					var des = val.charge_des;
+				}
+				html += '<tr><td style="vertical-align:middle">'+des;		
+				html += '</td><td style="vertical-align:middle" colspan=2>'+val.count+'</td></tr>';
+			}
+		})
+		// console.log(html)
+		html += '</table>';
+		// $('#stats-content-charges').html(html);
+		$('#stats-content-prison2').append('Top Charges:' + html);
+		// return html;
 	})
 }
 
