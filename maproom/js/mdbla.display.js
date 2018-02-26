@@ -1,11 +1,11 @@
 
 mdbla.displayPrisonData = function()
 {
+	console.log('display jail data...')
 	// populate the title box
 	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
 	$('#display-geography-title').html(html);	
 
-	console.log('display prison data')
 	// let's resize the windows
 	mdbla.resize();
 
@@ -15,30 +15,46 @@ mdbla.displayPrisonData = function()
 	var costranking = mdbla.costranks[slugposition];
 
 	// Cost of incarceration
-	var html = '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><br>Cost of incarceration</div>';
+	var lapd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LAPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
+
+
+
+
+	var lasd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
+	var lbpd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
+
+	var html = '<div class="col-md-4" style="text-align:center;"><h4>Cost of incarceration</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>$'+lapd_cost+'</td></tr><tr><td>LASD</td><td>$'+lasd_cost+'</td></tr><tr><td>LBPD</td><td>$'+lbpd_cost+'</td></tr></table></div>';
 	
 	// Days in Jail
-	html += '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._jaildays))+'</span><br>Days in jail</div>';
+	var lapd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LAPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
+	var lasd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
+	var lbpd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
+
+	html += '<div class="col-md-4" style="text-align:center;"><h4>Days in jail</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._jaildays))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_days+'</td></tr><tr><td>LASD</td><td>'+lasd_days+'</td></tr><tr><td>LBPD</td><td>'+lbpd_days+'</td></tr></table></div>';
 
 	// Number of arrests
-	var peopleicon = '<img src="img/icon-man-16.png">';
-	var peopleicons = '';
-	if(mdbla.geography == 'Neighborhoods')
-	{
-		var peoplepericon = 100;		
-	}
-	else
-	{
-		var peoplepericon = 10;
-	}
+	var lapd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LAPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
+	var lasd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
+	var lbpd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
 
-	for (var i = 0; i < Math.round(mdbla.highlightedData._bookings/peoplepericon); i++) {
-		peopleicons += peopleicon;
-	}
+	// var peopleicon = '<img src="img/icon-man-16.png">';
+	// var peopleicons = '';
+	// if(mdbla.geography == 'Neighborhoods')
+	// {
+	// 	var peoplepericon = 100;		
+	// }
+	// else
+	// {
+	// 	var peoplepericon = 10;
+	// }
+
+	// for (var i = 0; i < Math.round(mdbla.highlightedData._bookings/peoplepericon); i++) {
+	// 	peopleicons += peopleicon;
+	// }
 	// has people icons
 	// html += '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><br>('+peopleicon+' = '+peoplepericon+' arrests)<div style="padding:4px;">'+peopleicons+'</div>Number of arrests ('+bookingsranking+' out of '+mdbla.bookingsranks.length+')</div>';
 	// no people icons
-	html += '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><br>Number of arrests</div>';
+	html += '<div class="col-md-4" style="text-align:center;"><h4>Number of arrests</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_bookings+'</td></tr><tr><td>LASD</td><td>'+lasd_bookings+'</td></tr><tr><td>LBPD</td><td>'+lbpd_bookings+'</td></tr></table></div>';
 
 	// html += '</div>';
 
@@ -46,12 +62,13 @@ mdbla.displayPrisonData = function()
 
 	// let's add some waffles
 	$('#stats-content-prison2').html('');
+	$(window).hover()
 
 	/*
 		If it's LASD data, add the charges waffle, otherwise, leave it out
 		Also adjust the grids accordingly
 	*/
-	if(mdbla.geography == 'LASDNeighborhoods' || mdbla.geography == 'LBPDNeighborhoods')
+	if(mdbla.department == 'LASD' || mdbla.department == 'LBPD')
 	{
 		waffledivclass = 'col-md-4';
 	}
@@ -76,7 +93,7 @@ mdbla.displayPrisonData = function()
 
 
 	// charge waffle
-	if(mdbla.geography == 'LASDNeighborhoods' || mdbla.geography == 'LBPDNeighborhoods')
+	if(mdbla.department == 'LASD' || mdbla.department == 'LBPD')
 	{
 		var wafflevalues = {};
 		wafflevalues.title = 'Charge';
@@ -103,10 +120,10 @@ mdbla.displayCharges = function(rowcount)
 	$('#display-geography-title').html(html);	
 
 	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
-	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.geography]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
+	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.department]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
 	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
 	// display charges
-	var sql = $.getJSON('https://mdbla.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey, function(data) {
+	var sql = $.getJSON('https://yohman.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey2, function(data) {
 
 		// display the geography being charted
 		// show charge data in table
@@ -147,8 +164,6 @@ mdbla.displayTopCharges = function(rowcount)
 	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
 	// display charges
 	var sql = $.getJSON('https://mdbla.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey, function(data) {
-		console.log('top charges')
-		console.log(data)
 		// display the geography being charted
 		// show charge data in table
 		html += '<table class="table table-condensed table-striped">';
@@ -167,7 +182,6 @@ mdbla.displayTopCharges = function(rowcount)
 				html += '</td><td style="vertical-align:middle" colspan=2>'+val.count+'</td></tr>';
 			}
 		})
-		// console.log(html)
 		html += '</table>';
 		// $('#stats-content-charges').html(html);
 		$('#stats-content-prison2').append('Top Charges:' + html);
@@ -343,8 +357,9 @@ mdbla.displayDaysInJailChart = function()
 mdbla.displayRankings = function()
 {
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
-	$('#display-geography-title').html(html);	
+	// var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
+	// $('#display-geography-title').html(html);	
+
 	console.log('displaying rankings...')
 	// clear container
 	$('#stats-content-rankings').empty();
@@ -384,7 +399,7 @@ mdbla.displayRankings = function()
 	};
 
 	// loop through data
-	$.each(mdbla.data[mdbla.geography].rows,function(i,val){
+	$.each(mdbla.data[mdbla.department][mdbla.geography].rows,function(i,val){
 
 		var cost = Math.round(val._cost);
 		var arrests = Math.round(val._bookings);

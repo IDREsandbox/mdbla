@@ -50,7 +50,13 @@ mdbla.createBookmark = function()
 ***/
 mdbla.createRankings = function()
 {
-	$.each(mdbla.data[mdbla.geography].rows,function(i,val){
+	// start fresh
+	mdbla.jailarray = [];
+	mdbla.bookingsarray = [];
+	mdbla.costarray = [];
+	mdbla.slugarray = [];
+
+	$.each(mdbla.data[mdbla.department][mdbla.geography].rows,function(i,val){
 		mdbla.jailarray.push(val._jaildays)
 		mdbla.bookingsarray.push(val._bookings)
 		mdbla.costarray.push(val._cost)
@@ -96,7 +102,7 @@ mdbla.createWaffleChart = function(values)
 	var waffle = '<div style="text-align:center">';
 
 	// title
-	waffle += '<h2>'+values.title+'</h2>';
+	waffle += '<h4>'+values.title+'</h4>';
 
 
 	// waffle it
@@ -125,11 +131,11 @@ mdbla.createWaffleChart = function(values)
 mdbla.createNeighborhoodDropdown = function()
 {
 
-	mdbla.data[mdbla.geography].rows.sort(function(a, b) {
+	mdbla.data[mdbla.department][mdbla.geography].rows.sort(function(a, b) {
 		return parseFloat(b.name) - parseFloat(a.name);
 	});
 
-	$.each(mdbla.data[mdbla.geography].rows,function(i,val){
+	$.each(mdbla.data[mdbla.department][mdbla.geography].rows,function(i,val){
 		$('#dropdown-neighborhood').append('<li><a href="#" onclick="mdbla.highlightPolygon(\''+val.slug+'\')">'+val.name+'</a></li>')
 	})
 }

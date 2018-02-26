@@ -5,7 +5,7 @@
 ***/
 mdbla.setMap = function()
 {
-
+	console.log('setting map...')
 	// remove layer if it exists
 	if(mdbla.cartoLayers)
 	{
@@ -14,12 +14,11 @@ mdbla.setMap = function()
 
 	$('#display-geography-title').empty();
 
-	mdbla.layerCarto = cartodb.createLayer(mdbla.map, mdbla.cartoLayerMap[mdbla.geography],{legends:false,zIndex:2})
+	mdbla.layerCarto = cartodb.createLayer(mdbla.map, mdbla.cartoLayerMap[mdbla.department][mdbla.geography],{legends:false,zIndex:2})
 		.addTo(mdbla.map)
 		.on('done',function(layer){
-			console.log('carto layer mapped...')
-			console.log(layer)
-			console.log(layer.getSubLayer(0))
+
+			console.log('map created...')
 			mdbla.cartoLayers = layer;
 
 			layer.on('featureClick',function(e, pos, latlng, data){
@@ -40,15 +39,15 @@ mdbla.setMap = function()
 			})
 			.on('featureOver', function(e, latlng, pos, data) 
 			{
-				console.log('hover on...')
+				console.log('hovering over map features...')
+				console.log(data)
 				// let's change the cursor cuz that hand is too vague
 				$('#map').css('cursor', 'pointer');
 
 				// only refresh the data if we hover over a new feature
 				if(mdbla.highlightedGeographyID != data[mdbla.geographyIDColumn[mdbla.geography]] && mdbla.allowHover)
 				{
-					console.log('hovering...')
-					console.log(data)
+					console.log('hovering over NEW feature...')
 					// assign map actions
 					mdbla.mapAction(data);
 
@@ -57,14 +56,7 @@ mdbla.setMap = function()
 				}
 			})
 			.on('load',function(){
-				console.log(mdbla.geography + 'layer is loaded')
-				// add labels
-				// if(mdbla.layerLabel == undefined)
-				// {
-					// .addTo(mdbla.map);
 
-
-				// }
 			})
 		})
 
@@ -72,14 +64,17 @@ mdbla.setMap = function()
 
 mdbla.mapAction = function(data)
 {
-
+	console.log('map action...')
 	// let the app know what happened
 	mdbla.highlightedData = data;
 	mdbla.highlightedGeographyID = data[mdbla.geographyIDColumn[mdbla.geography]];
 	mdbla.highlightedGeographyName = data.name;
 
+	rateofincarecration = mdbla.highlightedData._bookings / mdbla.highlightedData.pop2010 * 100;
+	rateofincarecration = Math.round(rateofincarecration)+'%';
 	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'</div>';
+	// var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>Booking data from 2010 - 2015<br>2010 population: '+mdbla.numberWithCommas(data.pop2010)+'</div>';
+	var html = '<div><span class="stats-title">' + mdbla.highlightedGeographyName + '</span><br>Showing booking data from 2012 to 2016<br>Cost ranking: <b>' + (mdbla.costranks.length - mdbla.costranks[mdbla.slugarray.indexOf(mdbla.highlightedData.slug)] + 1) + '</b> out of ' + mdbla.costranks.length + ' neighborhoods<table class="table table-sm"><tr><td>2010 population</td><td><strong>' + mdbla.numberWithCommas(mdbla.highlightedData.pop2010) + '</strong></td></tr><tr><td>2010 18 and over population</td><td><strong>' + mdbla.numberWithCommas(mdbla.highlightedData.pop2010_18) + '</strong></td></tr><tr><td>Rate of incarceration</td><td><strong>' + rateofincarecration +'</strong></td></tr></table></div>';
 	// $('#display-geography-title').html(html);
 
 	// // populate the title box
@@ -106,7 +101,6 @@ mdbla.mapAction = function(data)
 
 mdbla.highlightRanking = function(id)
 {
-	console.log('highlighting ranking row '+id)
 	$('#ranking-'+id).css('background-color','yellow')
 	if(mdbla.highlightedRanking) mdbla.highlightedRanking.css('background-color','white');
 	mdbla.highlightedRanking = $('#ranking-'+id);
@@ -121,7 +115,6 @@ mdbla.scrollToRanking = function(id)
 
 mdbla.highlightPolygon = function(id,zoomornot)
 {
-	console.log('highlighting '+id)
 	if(mdbla.activeTab == 'Rankings') mdbla.highlightRanking(id);
 
 	mdbla.highlightedPolygonStyle = {
@@ -163,4 +156,55 @@ mdbla.highlightPolygon = function(id,zoomornot)
 	// zoom to the polygon
 	if(zoomornot) mdbla.map.fitBounds(mdbla.highlightedPolygon.getBounds()); 
 
+}
+
+mdbla.getCentroid = function(slug)
+{
+
+	function arrayMin(arr) {
+	  var len = arr.length, min = Infinity;
+	  while (len--) {
+	    if (arr[len] < min) {
+	      min = arr[len];
+	    }
+	  }
+	  return min;
+	};
+
+	function arrayMax(arr) {
+	  var len = arr.length, max = -Infinity;
+	  while (len--) {
+	    if (arr[len] > max) {
+	      max = arr[len];
+	    }
+	  }
+	  return max;
+	};
+
+	var hiIcon = L.icon({
+		iconUrl: 'img/hi.png',
+
+		iconSize:     [36, 45], // size of the icon
+		iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});
+
+	var result = $.grep(mdbla.geojson[mdbla.geography], function(e){ return e.properties.slug == slug; });
+	var coords = result[0].geometry.coordinates[0][0];
+	// var coords = mdbla.geojson[mdbla.geography][0].geometry.coordinates[0][0];
+	console.log(coords)
+	var lat_list = [];
+	var lng_list = [];
+	$.each(coords,function(i,val){
+		lng_list.push(val[0]);
+		lat_list.push(val[1]);
+	})
+	console.log(arrayMax(lat_list))
+	console.log(arrayMin(lat_list))
+
+	var centroid_lat = (arrayMax(lat_list)-arrayMin(lat_list))/2+arrayMin(lat_list);
+	var centroid_lng = (arrayMax(lng_list)-arrayMin(lng_list))/2+arrayMin(lng_list);
+
+	L.marker([centroid_lat,centroid_lng],{icon:hiIcon}).addTo(mdbla.map);
+	// return [centroid_lat,centroid_lng];
 }
