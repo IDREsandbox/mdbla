@@ -21,21 +21,27 @@ mdbla.displayPrisonData = function()
 
 
 	var lasd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
-	var lbpd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
+	// var lbpd_cost = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._cost));
 
-	var html = '<div class="col-md-4" style="text-align:center;"><h4>Cost of incarceration</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>$'+lapd_cost+'</td></tr><tr><td>LASD</td><td>$'+lasd_cost+'</td></tr><tr><td>LBPD</td><td>$'+lbpd_cost+'</td></tr></table></div>';
+	// var html = '<div class="col-md-4" style="text-align:center;"><h4>Cost of incarceration</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>$'+lapd_cost+'</td></tr><tr><td>LASD</td><td>$'+lasd_cost+'</td></tr><tr><td>LBPD</td><td>$'+lbpd_cost+'</td></tr></table></div>';
+	
+	// no lbpd
+	var html = '<div class="col-md-4" style="text-align:center;"><h4>Cost of incarceration</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._cost))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>$'+lapd_cost+'</td></tr><tr><td>LASD</td><td>$'+lasd_cost+'</td></tr></table></div>';
 	
 	// Days in Jail
 	var lapd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LAPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
 	var lasd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
-	var lbpd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
+	// var lbpd_days = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._jaildays));
 
-	html += '<div class="col-md-4" style="text-align:center;"><h4>Days in jail</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._jaildays))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_days+'</td></tr><tr><td>LASD</td><td>'+lasd_days+'</td></tr><tr><td>LBPD</td><td>'+lbpd_days+'</td></tr></table></div>';
+	// html += '<div class="col-md-4" style="text-align:center;"><h4>Days in jail</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._jaildays))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_days+'</td></tr><tr><td>LASD</td><td>'+lasd_days+'</td></tr><tr><td>LBPD</td><td>'+lbpd_days+'</td></tr></table></div>';
+	
+	// no lbpd
+	html += '<div class="col-md-4" style="text-align:center;"><h4>Days in jail</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._jaildays))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_days+'</td></tr><tr><td>LASD</td><td>'+lasd_days+'</td></tr></table></div>';
 
 	// Number of arrests
 	var lapd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LAPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
 	var lasd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LASD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
-	var lbpd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
+	// var lbpd_bookings = mdbla.numberWithCommas(Math.round($.grep(mdbla.data['LBPD'][mdbla.geography]['rows'], function(e){ return e[mdbla.geographyIDColumn[mdbla.geography]] == mdbla.highlightedGeographyID; })[0]._bookings));
 
 	// var peopleicon = '<img src="img/icon-man-16.png">';
 	// var peopleicons = '';
@@ -54,7 +60,11 @@ mdbla.displayPrisonData = function()
 	// has people icons
 	// html += '<div class="col-md-4" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><br>('+peopleicon+' = '+peoplepericon+' arrests)<div style="padding:4px;">'+peopleicons+'</div>Number of arrests ('+bookingsranking+' out of '+mdbla.bookingsranks.length+')</div>';
 	// no people icons
-	html += '<div class="col-md-4" style="text-align:center;"><h4>Number of arrests</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_bookings+'</td></tr><tr><td>LASD</td><td>'+lasd_bookings+'</td></tr><tr><td>LBPD</td><td>'+lbpd_bookings+'</td></tr></table></div>';
+
+	// html += '<div class="col-md-4" style="text-align:center;"><h4>Number of arrests</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_bookings+'</td></tr><tr><td>LASD</td><td>'+lasd_bookings+'</td></tr><tr><td>LBPD</td><td>'+lbpd_bookings+'</td></tr></table></div>';
+	
+	// no lbpd
+	html += '<div class="col-md-4" style="text-align:center;"><h4>Number of arrests</h4><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData._bookings))+'</span><table class="table table-condensed smallfont" style="margin: 0 auto;width:80%"><tr><td>LAPD</td><td>'+lapd_bookings+'</td></tr><tr><td>LASD</td><td>'+lasd_bookings+'</td></tr></table></div>';
 
 	// html += '</div>';
 

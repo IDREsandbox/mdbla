@@ -119,6 +119,8 @@ mdbla.clickFunctions = function()
 // $( function() 
 mdbla.initialize = function()
 {
+	console.log('initialize...')
+	
 	// adjust windows
 	mdbla.resize()
 

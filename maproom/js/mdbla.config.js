@@ -58,7 +58,8 @@
 	mdbla.geography = 'Neighborhoods'; //neighborhoods or regions
 	mdbla.geographies = ['Neighborhoods','Regions']; //neighborhoods or regions
 	mdbla.department = 'ALL'; // ALL/LASD/LAPD/LBPD
-	mdbla.departments = ['ALL','LASD','LAPD','LBPD']; // ALL/LASD/LAPD/LBPD
+	// mdbla.departments = ['ALL','LASD','LAPD','LBPD']; // ALL/LASD/LAPD/LBPD
+	mdbla.departments = ['ALL','LASD','LAPD']; // ALL/LASD/LAPD/LBPD
 	mdbla.map;
 	mdbla.layerCarto;
 	mdbla.cartoSubLayer1;
@@ -95,8 +96,8 @@
 		// 'LAPDNeighborhoods' : 'lapd_2010_2015_by_neighborhoods',
 		// 'LBPDNeighborhoods' : 'lbpd_2010_2015_by_neighborhoods',
 		'ALL'				: 	{
-									'Neighborhoods' : 'all_2010_2015_by_neighborhoods',
-									'Regions' 		: 'all_2010_2015_by_regions',									
+									'Neighborhoods' : 'all_2012_2016_by_neighborhoods',
+									'Regions' 		: 'all_2012_2016_by_regions',									
 								},
 		'LASD'				: 	{
 									// 'Neighborhoods' : 'lasd_2010_2015_by_neighborhoods',
@@ -110,8 +111,8 @@
 								},
 		'LBPD'				: 	{
 									// 'Neighborhoods' : 'lbpd_2010_2015_by_neighborhoods',
-									'Neighborhoods' : 'lbpd_2012_2016_by_neighborhoods',
-									'Regions' 		: 'lbpd_2012_2016_by_regions',									
+									'Neighborhoods' : 'lbpd_2010_2015_by_neighborhoods',
+									'Regions' 		: 'lbpd_2010_2015_by_regions',									
 								},
 	}
 
@@ -122,26 +123,19 @@
 		// 'LAPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/d5baf89e-1011-11e7-a7b5-0e3ebc282e83/viz.json',
 		// 'LBPDNeighborhoods' : 'https://mdbla.carto.com/api/v2/viz/19e33948-f936-11e6-89cc-0e233c30368f/viz.json',
 		'ALL'				: 	{
-									'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/206bb5de-8e9a-482c-8db6-a0a6756cd54d/viz.json',
-									'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/65758a5f-2726-4cf2-968b-0eefeb958c19/viz.json',									
+									'Neighborhoods'	: 'https://mdbla.carto.com/api/v2/viz/a1975981-1986-4ad9-8539-c5b6ee844746/viz.json',
+									'Regions'		: 'https://mdbla.carto.com/api/v2/viz/6488a261-6dba-4c94-8c0f-92d2f6916721/viz.json',									
 								},
 		'LASD'				: 	{
-									// 'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/2b09a2c0-1010-11e7-b12e-0e05a8b3e3d7/viz.json',
-			'Neighborhoods': 'https://mdbla.carto.com/api/v2/viz/e8ff1ce0-2138-4c10-a7de-63f15734bd36/viz.json',
-									// 'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/2ea2e50b-3889-46a9-8849-4eda721ddebd/viz.json',
-									// 'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/d7b51f1c-10cf-11e7-961a-0e3ff518bd15/viz.json',									
-									'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/35d1c90e-c793-45b1-81e0-939ef03734b1/viz.json',									
+									'Neighborhoods'	: 'https://mdbla.carto.com/api/v2/viz/ae540dc0-78b1-4c54-a51d-2ace60339e60/viz.json',
+									'Regions'		: 'https://mdbla.carto.com/api/v2/viz/4ac478b2-2814-4701-b886-104a250dd4a5/viz.json',									
 								},
 		'LAPD'				: 	{
-									// 'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/d5baf89e-1011-11e7-a7b5-0e3ebc282e83/viz.json',
-									'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/c9f9dd8f-6014-4506-be87-17e601691242/viz.json',
-									// 'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/fda2f682-10d3-11e7-86a9-0e3ff518bd15/viz.json',									
-									'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/b042d4c3-76c7-48d1-883a-f945e70effa3/viz.json',									
+									'Neighborhoods'	: 'https://mdbla.carto.com/api/v2/viz/f959b667-6dea-41b5-a9dd-b4dbbf34a2fd/viz.json',
+									'Regions'		: 'https://mdbla.carto.com/api/v2/viz/8048d618-0f65-4af8-a069-3359b6e41d8a/viz.json',									
 								},
 		'LBPD'				: 	{
-									// 'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/0a1b2117-4c3c-4fe6-a511-6539e386b32b/viz.json',
 									'Neighborhoods' : 'https://mdbla.carto.com/api/v2/viz/107c742a-167b-43b6-8566-075aece2c468/viz.json',
-									// 'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/8a63b20c-bd30-4d83-a970-41eff8bfc715/viz.json',									
 									'Regions' 		: 'https://mdbla.carto.com/api/v2/viz/8a63b20c-bd30-4d83-a970-41eff8bfc715/viz.json',									
 								},
 	}
@@ -193,7 +187,7 @@
 			// get geojson for each polygon
 			// WARNING: may take time
 			var sql_geojson = 'SELECT * FROM '+mdbla.cartoLayerTable[department][geography];
-
+			console.log(sql_geojson)
 			var sql1 = $.getJSON('https://mdbla.carto.com/api/v2/sql/?q='+sql_summary+'&api_key='+mdbla.cartoKey, function(data) {
 				mdbla.summary[geography] = data.rows[0];
 			});
@@ -220,6 +214,7 @@
 						}
 						else
 						{
+							console.log('still not enough data... ongoing count::'+ongoingcount+' combined data count::' + combineddatacount)
 							ongoingcount++;
 						}
 						// mdbla.createRankings();
