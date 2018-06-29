@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>Update a choropleth layer by zoom level</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+	<style>
+		body { margin:0; padding:0; }
+		h2, h3 {
+			margin: 10px;
+			font-size: 1.2em;
+		}
+		h3 {
+			font-size: 1em;
+		}
+		p {
+			font-size: 0.85em;
+			margin: 10px;
+			text-align: left;
+		}
+		#map { position:absolute; top:0; bottom:0; width:100%; }
+		.map-overlay {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background: rgba(255, 255, 255, 0.8);
+			margin-right: 20px;
+			font-family: Arial, sans-serif;
+			overflow: auto;
+			border-radius: 3px;
+		}
+		#features {
+			top: 0;
+			height: 200px;
+			margin-top: 20px;
+			width: 250px;
+		}
+	</style>
+</head>
+<body>
+
+
+<div id='map'></div>
+<div class='map-overlay' id='features'><h2>Cost</h2><div id='pd'><p>Hover over a state!</p></div></div>
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoieW9obWFuIiwiYSI6IkxuRThfNFkifQ.u2xRJMiChx914U7mOZMiZw';
+var map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/light-v9',
+	center: [-118.23280334472658,33.98037811701901],
+	zoom: 9
+});
+
+
+map.on('load', function() {
+
+	map.addSource('lasd', {
+		'type': 'vector',
+		'url': 'mapbox://yohman.901a8ghg'
+	});
+
+	map.addLayer({
+		'id': 'lasd',
+		'source': 'lasd',
+		'source-layer': 'lasd_2012_2016_by_neighborhoo-4hs03a',
+		'type': 'fill-extrusion',
+		'paint': {
+			'fill-extrusion-color': [
+				'step',
+				['get', '_cost'],'#F7F7F7',
+				0, '#F7F7F7',
+				100000, '#CCCCCC',
+				500000, '#969696',
+				1000000, '#636363',
+				6000000, '#e31a1c'
+			],
+			'fill-extrusion-opacity': 0.8,
+			// 'fill-extrusion-height': ['get', '_cost'],
+			'fill-extrusion-height': ["*",['get', '_cost'],0.001],
+			// 'fill-line-color': 'white'
+		}
+	}, 'waterway-label');
+
+	map.addLayer({
+		'id': 'lasd-hover',
+		'source': 'lasd',
+		'source-layer': 'lasd_2012_2016_by_neighborhoo-4hs03a',
+		'type': 'fill-extrusion',
+		'paint': {
+			'fill-extrusion-color': [
+				'step',
+				['get', '_cost'],'#F7F7F7',
+				0, '#F7F7F7',
+				100000, '#CCCCCC',
+				500000, '#969696',
+				1000000, '#636363',
+				6000000, '#e31a1c'
+			],
+			'fill-extrusion-opacity': 1,
+			// 'fill-extrusion-height': ['get', '_cost'],
+			'fill-extrusion-height': ["*",['get', '_cost'],0.001],
+			// 'fill-line-color': 'white'
+		}
+	}, 'waterway-label');
+
+
+
+	// change info window on hover
+	map.on('mousemove', function (e) {
+		var states = map.queryRenderedFeatures(e.point, {
+			layers: ['lasd']
+		});
+
+		if (states.length > 0) {
+		   document.getElementById('pd').innerHTML = "<h3><strong>" + states[0].properties.slug + "</strong></h3><p><strong><em>" + states[0].properties._cost + "</strong> cost of incarceration</em></p>";
+		} else {
+		   document.getElementById('pd').innerHTML = '<p>Hover over a state!</p>';
+		}
+
+		map.setFilter("lasd-hover", ["==", "slug", states[0].properties.slug]);
+	});
+});
+
+
+</script>
+
+</body>
+</html>

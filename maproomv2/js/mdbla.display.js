@@ -108,7 +108,7 @@ mdbla.displayPrisonData = function()
 		var wafflevalues = {};
 		wafflevalues.title = 'Charge';
 		wafflevalues.data = [mdbla.highlightedData._charge_m,mdbla.highlightedData._charge_f,mdbla.highlightedData._charge_o]
-		wafflevalues.labels = ['Misdimeanor','Felony','Other']
+		wafflevalues.labels = ['Misdemeanor','Felony','Other']
 		$('#stats-content-prison2').append('<div class="'+waffledivclass+'">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
 	}
 
@@ -120,42 +120,56 @@ mdbla.displayPrisonData = function()
 
 mdbla.displayCharges = function(rowcount)
 {
+	console.log('displaying charges...')
 	if(rowcount === undefined)
 	{
 		rowcount = 100;
 	}
 
-	// populate the title box
-	var html = '<div><span class="stats-title">'+mdbla.highlightedGeographyName+'</span><br>2010 population: '+mdbla.numberWithCommas(mdbla.highlightedData.pop2010)+'</div>';
-	$('#display-geography-title').html(html);	
-
-	// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
-	var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM '+mdbla.cartoBookingsTable[mdbla.department]+' WHERE '+mdbla.geographyIDColumn[mdbla.geography]+' = \''+ mdbla.highlightedGeographyID +'\' GROUP BY charge_des ORDER BY count DESC';
-	var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
-	// display charges
-	var sql = $.getJSON('https://yohman.carto.com/api/v2/sql/?q='+sql_statement1+'&api_key='+mdbla.cartoKey2, function(data) {
-
-		// display the geography being charted
-		// show charge data in table
-		html += '<table class="table table-condensed table-striped">';
-		$.each(data.rows,function(i,val){
-			if(i<rowcount)
-			{
-				if (val.charge_des == '') 
-				{
-					var des = '<i>(blank in original dataset)</i>';
-				}
-				else
-				{
-					var des = val.charge_des;
-				}
-				html += '<tr><td style="vertical-align:middle">'+des;		
-				html += '</td><td style="vertical-align:middle" colspan=2>'+val.count+'</td></tr>';
-			}
-		})
-		html += '</table>';
+	if (mdbla.department == 'ALL')
+	{
+		console.log('department is all...')
+		var html = '<div class="alert alert-danger">You are now looking at the combined total data for all police departments. In order to view charges, choose a police department from the drop down menu above the map.</div>';
 		$('#stats-content-charges').html(html);
-	})
+	}
+	else
+	{
+		if (typeof mdbla.highlightedGeographyName == 'undefined') {
+			var html = '<div><span class="stats-title">Click on an area on the map</span></div>';
+		}
+		else {
+			var html = '<div><span class="stats-title">' + mdbla.highlightedGeographyName + '</span><br>2010 population: ' + mdbla.numberWithCommas(mdbla.highlightedData.pop2010) + '</div>';
+
+			// $('#display-geography-title').append('Number of arrests: '+mdbla.numberWithCommas(mdbla.highlightedData._bookings));
+			var sql_statement1 = 'SELECT charge_des,count(*) as "count" FROM ' + mdbla.cartoBookingsTable[mdbla.department] + ' WHERE ' + mdbla.geographyIDColumn[mdbla.geography] + ' = \'' + mdbla.highlightedGeographyID + '\' GROUP BY charge_des ORDER BY count DESC';
+			var html = '<i style="color:#888;font-size:0.9em;padding:4px;">(charges appear as recorded in original dataset)</i><br>';
+			// display charges
+			var sql = $.getJSON('https://yohman.carto.com/api/v2/sql/?q=' + sql_statement1 + '&api_key=' + mdbla.cartoKey2, function (data) {
+
+				// display the geography being charted
+				// show charge data in table
+				html += '<table class="table table-condensed table-striped">';
+				$.each(data.rows, function (i, val) {
+					if (i < rowcount) {
+						if (val.charge_des == '') {
+							var des = '<i>(blank in original dataset)</i>';
+						}
+						else {
+							var des = val.charge_des;
+						}
+						html += '<tr><td style="vertical-align:middle">' + des;
+						html += '</td><td style="vertical-align:middle" colspan=2>' + val.count + '</td></tr>';
+					}
+				})
+				html += '</table>';
+				$('#stats-content-charges').html(html);
+			})
+		}
+	}
+
+	// populate the title box
+	// $('#display-geography-title').html(html);	
+
 }
 
 mdbla.displayTopCharges = function(rowcount)
@@ -421,10 +435,15 @@ mdbla.displayRankings = function()
 		var jaildaysdisplay = mdbla.numberWithCommas(Math.round(val._jaildays));
 		var pop2010display = mdbla.numberWithCommas(Math.round(val.pop2010));
 
-		var costwidth = Math.round(cost/mdbla.summary[mdbla.geography]["costmax"]*100);
-		var arrestswidth = Math.round(arrests/mdbla.summary[mdbla.geography]["bookingsmax"]*100);
-		var jaildayswidth = Math.round(jaildays/mdbla.summary[mdbla.geography]["jailmax"]*100);
-		var pop2010width = Math.round(pop2010/mdbla.summary[mdbla.geography]["pop2010max"]*100);
+		// var costwidth = Math.round(cost/mdbla.summary[mdbla.geography]["costmax"]*100);
+		// var arrestswidth = Math.round(arrests/mdbla.summary[mdbla.geography]["bookingsmax"]*100);
+		// var jaildayswidth = Math.round(jaildays/mdbla.summary[mdbla.geography]["jailmax"]*100);
+		// var pop2010width = Math.round(pop2010/mdbla.summary[mdbla.geography]["pop2010max"]*100);
+
+		var costwidth = 0;
+		var arrestswidth = 0;
+		var jaildayswidth = 0;
+		var pop2010width = 0;
 
 		var thisrowhtml = '';
 

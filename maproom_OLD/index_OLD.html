@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<!-- 	
+
+		Stylesheets 
+
+	-->
+	<!-- mapbox v2.4.0 -->
+	<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+
+ 	<!-- use these cartodb.css links if you are using https -->
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+
+	<!-- bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- vis and custom css -->
+	<link href="css/vis.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="container-fluid">
+	<div class="row">
+		<!-- map  -->
+		<div class="col-xs-6">
+			<div id="map-buttons">
+				<!-- Geo toggle 
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" id="display-geography">Neighborhoods</button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#" id="button-neighborhoods">Neighborhoods</a></li>
+						<li><a href="#" id="button-blockgroups">Block Groups</a></li>
+					</ul>
+				</div>-->
+				
+				<div class="btn-group">
+					<!-- <button type="button" class="btn btn-default" id="display-geography">Los Angeles Sheriff's Department (LASD)</button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button> -->
+
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="display-geography">
+						Los Angeles Sheriff's Department (LASD) <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#" id="button-LASD">Los Angeles Sheriff's Department (LASD)</a></li>
+						<li><a href="#" id="button-LAPD">Los Angeles Police Department (LAPD)</a></li>
+						<li><a href="#" id="button-LBPD">Long Beach Police Department (LBPD)</a></li>
+						<!-- <li><a href="#" id="button-COMBINED">LASD + LAPD</a></li> -->
+					</ul>
+				</div>
+				
+			</div>
+			<div id='map'></div>
+		</div>
+		<!-- stats -->
+		<div class="col-xs-6" id='stats'>
+			<div>
+				<!-- menu items -->
+				<ul id="main-menu" class="nav nav-pills nav-justified">
+					<li class="active"><a data-toggle="tab" href="#prison" id="button-prison">Jail Data</a></li>
+					<li><a data-toggle="tab" href="#charges" id="button-charges">Charges</a></li>
+					<!-- 
+					<li><a data-toggle="tab" href="#timeline" id="button-timeline">Timeline</a></li>
+					<li><a data-toggle="tab" href="#daysinjail" id="button-daysinjail">Days in Jail</a></li>
+					 -->
+					<li><a data-toggle="tab" href="#rankings" id="button-rankings">Rankings</a></li>
+				</ul>
+
+				<!-- bookmarks bar -->
+				<div id="display-bookmarks-container"><div id="display-bookmarks">Click on a location on the map to bookmark it here</div></div>
+
+				<!-- title bar -->
+				<div id="display-geography-title">
+					
+
+
+				</div>
+				
+				<!-- content -->
+				<div id="display-stats" class="tab-content">
+					<div id="prison" style="padding:8px;" class="tab-pane fade in active menu-content">
+						<div style="clear:both" id="stats-content-prison1">	
+							<div class="well">
+								On the map to the left, hover your mouse on neighborhoods to learn how much LASD and LAPD spent to incarcerate residents of that community between 2010 and 2015.  With each click you will also access supplemental data, such as the leading causes of arrest within each neighborhood and the racial and gender demographics of residents jailed by LASD deputies.  
+							</div>
+						</div>
+						<div style="clear:both" id="stats-content-prison2"></div>
+					</div>
+					<div id="charges" class="tab-pane fade menu-content">
+						
+						<div style="clear:both" id="stats-content-charges"></div>
+					</div>
+					<!-- 
+					<div id="timeline" class="tab-pane fade menu-content">
+						<div style="clear:both" id="stats-content-timeline"></div>
+					</div>
+					<div id="daysinjail" class="tab-pane fade menu-content">
+						<div style="clear:both" id="stats-content-daysinjail"></div>
+					</div>
+					 -->
+					<div id="rankings" class="tab-pane fade menu-content">
+						<div style="clear:both" id="stats-content-rankings"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Legend -->
+<div id="legend-container">
+	<table class="legend-table">
+		<tr>
+			<td style="background-color: #e31a1c;border:1px solid gray;height:20px">
+				<div></div>
+			</td>
+			<td>
+				more than $10,000,000
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!-- Footer
+<nav id="footer" class="navbar navbar-default navbar-fixed-bottom" style="background-color: rgba(0,0,0,0.9); color: white;">
+	<div class="container">
+		<p class="navbar-text navbar-right">
+			* All statistics are based on police bookings in Los Angeles County recorded between 2010 and 2015. Data was collected from the Los Angeles Sheriff's Department.
+		</p>
+	</div>
+</nav>
+ -->
+<!-- 
+
+	Javascript libraries
+
+ -->
+	<!-- jQuery 1.12.4 -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- bootstrap 3.3.6 -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- use this cartodb.js link if you are using https -->
+	<script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+
+	<!-- vis and list -->
+	<script src="js/vis.js"></script>
+	<script src="js/list.min.js"></script>
+
+	<!-- mapbox v2.4.0 standalone (no leaflet) -->
+	<script src="js/mapbox.standalone.js"></script>
+
+	<!-- mdbla javascript -->
+	<script src="js/mdbla.config.js"></script>
+	<script src="js/mdbla.query.js"></script>
+	<script src="js/mdbla.map.js"></script>
+	<script src="js/mdbla.create.js"></script>
+	<script src="js/mdbla.display.js"></script>
+
+</body>
+</html>
