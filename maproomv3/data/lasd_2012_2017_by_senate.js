@@ -1,7 +1,7 @@
 lasd_2012_2017_by_senate = [
   {
     "id": 6,
-    "senator": "Benjamin Allen",
+    "name": "Benjamin Allen",
     "district": 26,
     "senate": 26,
     "_bookings": 8166,
@@ -19,7 +19,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 2,
-    "senator": "Josh Newman",
+    "name": "Josh Newman",
     "district": 29,
     "senate": 29,
     "_bookings": 4573,
@@ -37,7 +37,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 12,
-    "senator": "Scott Wilk",
+    "name": "Scott Wilk",
     "district": 21,
     "senate": 21,
     "_bookings": 51865,
@@ -55,7 +55,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 16,
-    "senator": "Mike Morrell",
+    "name": "Mike Morrell",
     "district": 23,
     "senate": 23,
     "_bookings": 1,
@@ -73,7 +73,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 14,
-    "senator": "Anthony J. Portantino",
+    "name": "Anthony J. Portantino",
     "district": 25,
     "senate": 25,
     "_bookings": 10246,
@@ -91,7 +91,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 33,
-    "senator": "Ed Hernandez",
+    "name": "Ed Hernandez",
     "district": 22,
     "senate": 22,
     "_bookings": 34109,
@@ -109,7 +109,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 34,
-    "senator": "Henry I. Stern",
+    "name": "Henry I. Stern",
     "district": 27,
     "senate": 27,
     "_bookings": 6736,
@@ -127,7 +127,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 32,
-    "senator": "Holly J. Mitchell",
+    "name": "Holly J. Mitchell",
     "district": 30,
     "senate": 30,
     "_bookings": 27132,
@@ -145,7 +145,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 11,
-    "senator": "Connie M. Leyva",
+    "name": "Connie M. Leyva",
     "district": 20,
     "senate": 20,
     "_bookings": 2887,
@@ -163,7 +163,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 13,
-    "senator": "Ricardo Lara",
+    "name": "Ricardo Lara",
     "district": 33,
     "senate": 33,
     "_bookings": 36998,
@@ -181,7 +181,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 21,
-    "senator": "Steven Bradford",
+    "name": "Steven Bradford",
     "district": 35,
     "senate": 35,
     "_bookings": 51119,
@@ -199,7 +199,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 9,
-    "senator": "Janet Nguyen",
+    "name": "Janet Nguyen",
     "district": 34,
     "senate": 34,
     "_bookings": 348,
@@ -217,7 +217,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 17,
-    "senator": "Tony Mendoza",
+    "name": "Tony Mendoza",
     "district": 32,
     "senate": 32,
     "_bookings": 51316,
@@ -235,7 +235,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 36,
-    "senator": "Robert M. Hertzberg",
+    "name": "Robert M. Hertzberg",
     "district": 18,
     "senate": 18,
     "_bookings": 5478,
@@ -253,7 +253,7 @@ lasd_2012_2017_by_senate = [
   },
   {
     "id": 19,
-    "senator": "Kevin de Leon",
+    "name": "Kevin de Leon",
     "district": 24,
     "senate": 24,
     "_bookings": 21114,
