@@ -1,5 +1,16 @@
 /***
 
+	Config File for MDBLA Maproom v2.0
+
+	Author: yohman
+	Last updated: July 31, 2018
+	To add/update data refer to:
+		https://github.com/IDREsandbox/mdbla/wiki/Adding-Updating-new-data-layers-for-Maproom-v2
+
+***/
+
+/***
+
 	Namespace and defaults
 
 ***/
@@ -9,7 +20,7 @@
 	mdbla.allowHover = true;
 	mdbla.currentLayer = 0;
 	mdbla.highlightedFeature = '';
-	
+
 	// ranking
 	mdbla.rankingList;
 
@@ -30,23 +41,23 @@ mdbla.getData = function()
 
 			Data json files:
 			New datasets need to added as json files. Note that the json file is
-			preceded with defining the json as a javascript object. 
+			preceded with defining the json as a javascript object.
 
 		*/
-		$.getScript( "data/lasd_2012_2017_by_neighborhoods.js" ),
-		$.getScript( "data/lapd_2012_2017_by_neighborhoods.js" ),
-		$.getScript( "data/lapd_2012_2017_by_regions.js" ),
-		$.getScript( "data/lasd_2012_2017_by_regions.js" ),
+		$.getScript( "data/lasd_2012_2017_by_neighborhood2.js" ),
+		$.getScript( "data/lapd_2012_2017_by_neighborhood.js" ),
+		$.getScript( "data/lasd_2012_2017_by_region2.js" ),
+		$.getScript( "data/lapd_2012_2017_by_region.js" ),
+		$.getScript( "data/lasd_2012_2017_by_assembly2.js" ),
 		$.getScript( "data/lapd_2012_2017_by_assembly.js" ),
-		$.getScript( "data/lasd_2012_2017_by_assembly.js" ),
+		$.getScript( "data/lasd_2012_2017_by_senate2.js" ),
 		$.getScript( "data/lapd_2012_2017_by_senate.js" ),
-		$.getScript( "data/lasd_2012_2017_by_senate.js" ),
 
 		// boundaries
-		$.getScript( "data/neighborhoods.js" ),
-		$.getScript( "data/regions.js" ),
-		$.getScript( "data/senate.js" ),
-		$.getScript( "data/assembly.js" ),
+		$.getScript( "data/boundaries/neighborhoods.js" ),
+		$.getScript( "data/boundaries/regions.js" ),
+		$.getScript( "data/boundaries/senate.js" ),
+		$.getScript( "data/boundaries/assembly.js" ),
 
 		// javascript
 		$.getScript( "js/mdbla.init.js" ),
@@ -71,6 +82,13 @@ mdbla.setParameters = function()
 		"Assembly"
 	]
 
+	/*
+
+		Valid police departments
+
+		Note that new departments would be added here (e.g. Culver City, UCPD, etc)
+
+	*/
 	mdbla.departments = [
 		"LAPD",
 		"LASD"
@@ -81,7 +99,12 @@ mdbla.setParameters = function()
 	mdbla.department = "LAPD";
 	mdbla.geojson = neighborhoods;
 
-	// data layers
+	/*
+
+		Data layers
+		This is what shows up on the site as button options
+
+	*/
 	mdbla.datalayers = [
 		{
 			title: 			"LAPD 2012-2017 by Neighborhoods",
@@ -90,7 +113,7 @@ mdbla.setParameters = function()
 			identifyer: 	'slug',
 			geographyname: 	"Neighborhoods",
 			geography: 		neighborhoods,
-			datavar: 		lapd_2012_2017_by_neighborhoods
+			datavar: 		lapd_2012_2017_by_neighborhood
 		},
 		{
 			title: 			"LASD 2012-2017 by Neighborhoods",
@@ -99,7 +122,7 @@ mdbla.setParameters = function()
 			identifyer: 	'slug',
 			geographyname: 	"Neighborhoods",
 			geography: 		neighborhoods,
-			datavar: 		lasd_2012_2017_by_neighborhoods
+			datavar: 		lasd_2012_2017_by_neighborhood
 		},
 		{
 			title: 			"LAPD 2012-2017 by Regions",
@@ -108,7 +131,7 @@ mdbla.setParameters = function()
 			identifyer: 	'region',
 			geographyname: 	"Regions",
 			geography: 		regions,
-			datavar: 		lapd_2012_2017_by_regions
+			datavar: 		lapd_2012_2017_by_region
 		},
 		{
 			title: 			"LASD 2012-2017 by Regions",
@@ -117,7 +140,7 @@ mdbla.setParameters = function()
 			identifyer: 	'region',
 			geographyname: 	"Regions",
 			geography: 		regions,
-			datavar: 		lasd_2012_2017_by_regions
+			datavar: 		lasd_2012_2017_by_region
 		},
 		{
 			title: 			"LAPD 2012-2017 by Assembly District",
@@ -212,7 +235,7 @@ mdbla.setParameters = function()
 	// $('#button-LBPD').click(function(){ mdbla.toggleData('LBPD',mdbla.geography) })
 
 	// tabs
-	
+
 	mdbla.activeTab = 'Jail Data';
 
 	$('#prison-tab').click(function(){ mdbla.activeTab = 'Jail Data'; mdbla.displayPrisonData() })
@@ -221,10 +244,10 @@ mdbla.setParameters = function()
 
 // }
 
-	/* 
-	
+	/*
+
 		create buttons for each layer
-	
+
 	*/
 
 	var html = '<div class="btn-group" role="group">';

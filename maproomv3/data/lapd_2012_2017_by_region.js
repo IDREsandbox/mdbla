@@ -1,4 +1,4 @@
-lapd_2012_2017_by_regions = [
+lapd_2012_2017_by_region = [
   {
     "id": 1,
     "_cost": 37463.92,

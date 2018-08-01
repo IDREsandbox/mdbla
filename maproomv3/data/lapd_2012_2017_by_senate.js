@@ -761,7 +761,7 @@ lapd_2012_2017_by_senate = [
     "sldust": "024",
     "affgeoid": "610U400US06024",
     "geoid": "06024",
-    "name": "Kevin de LeÃ³n",
+    "name": "Kevin de León",
     "senate": 24,
     "_bookings": 66762,
     "_jaildays": 149550,

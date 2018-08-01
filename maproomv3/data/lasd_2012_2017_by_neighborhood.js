@@ -1,4 +1,4 @@
-lasd_2012_2017_by_neighborhoods = [
+lasd_2012_2017_by_neighborhood = [
   {
 	"id": 112,
 	"slug": "larchmont",

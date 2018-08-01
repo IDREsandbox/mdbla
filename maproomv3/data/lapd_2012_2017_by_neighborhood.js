@@ -1,4 +1,4 @@
-lapd_2012_2017_by_neighborhoods = [
+lapd_2012_2017_by_neighborhood = [
   {
     "slug": "hollywood-hills",
     "name": "Hollywood Hills",

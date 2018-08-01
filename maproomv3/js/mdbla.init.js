@@ -1,6 +1,6 @@
 mdbla.init = function()
 {
-	/* 
+	/*
 
 		Initialize the Map
 
@@ -33,7 +33,7 @@ mdbla.mapGeoJSON = function()
 		}
 		else
 		{
-			$('#button-'+val).removeClass('active')			
+			$('#button-'+val).removeClass('active')
 		}
 	})
 
@@ -44,7 +44,7 @@ mdbla.mapGeoJSON = function()
 		}
 		else
 		{
-			$('#button-'+val).removeClass('active')			
+			$('#button-'+val).removeClass('active')
 		}
 	})
 
@@ -64,7 +64,7 @@ mdbla.mapGeoJSON = function()
 	if(mdbla.activeTab === 'Rankings')
 	{
 		mdbla.displayRankings()
-	} 
+	}
 
 	// update geojson
 	mdbla.geojson = mdbla.currentLayer.geography;
@@ -76,7 +76,7 @@ mdbla.mapGeoJSON = function()
 	mdbla.mapLayer = L.geoJson(mdbla.geojson, {
 		style: mdbla.style,
 		onEachFeature: mdbla.onEachFeature
-	}).addTo(mdbla.map);		
+	}).addTo(mdbla.map);
 	mdbla.mapLayer.bindTooltip(function(e){return e.feature.properties.name})
 
 	$('#data-subtitle').html(mdbla.currentLayer.title)
@@ -87,11 +87,11 @@ mdbla.onEachFeature = function(feature, layer) {
 	layer.on({
 		mouseover: mdbla.highlightFeature,
 		mouseout: mdbla.resetHighlight,
-		click: mdbla.clickFeature
+		// click: mdbla.clickFeature
 	});
 }
 
-mdbla.highlightFeature = function(e) 
+mdbla.highlightFeature = function(e)
 {
 
 	if(mdbla.allowHover)
@@ -116,8 +116,8 @@ mdbla.highlightFeature = function(e)
 			mdbla.highlightedData.bringToFront();
 		}
 
-		// display the data 
-		mdbla.displayData();		
+		// display the data
+		mdbla.displayData();
 	}
 
 }
@@ -151,7 +151,7 @@ mdbla.displayData = function()
 
 		// cost
 		var html = '<div class="col-sm data-box" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">$'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData.data._cost))+'</span><h4>Cost of incarceration</h4></div>';
-		
+
 		// days in jail
 		html += '<div class="col-sm data-box" style="text-align:center;"><span class="stats-title" style="color:'+mdbla.colorPallete[4]+'">'+mdbla.numberWithCommas(Math.round(mdbla.highlightedData.data._jaildays))+'</span><h4>Days in jail</h4></div>';
 
@@ -238,7 +238,7 @@ mdbla.style = function(feature) {
 
 mdbla.searchArray = function (array, s){
     var matches = [], i, key;
-    
+
     for( i = array.length; i--; )
         for( key in array[i] )
             if( array[i].hasOwnProperty(key) && array[i][key].indexOf(s) > -1 )
@@ -287,7 +287,7 @@ mdbla.createWaffleChart = function(values)
 	waffle += '<div class="row waffle-container"><br>';
 
 	$.each(normalizedValues,function(i,val){
-		for (var j = 0; j < val; j++) 
+		for (var j = 0; j < val; j++)
 		{
 			waffle += '<div class="waffle-border" style="float:left;"><div class="waffle-box" style="background-color:'+mdbla.colorPallete[i]+'"></div></div>';
 		}
@@ -352,6 +352,6 @@ mdbla.highlightPolygon = function(id,zoomornot)
 	mdbla.highlightedPolygon = L.geoJson(thisGeoJSON,mdbla.highlightedPolygonStyle).addTo(mdbla.map);
 
 	// zoom to the polygon
-	if(zoomornot) mdbla.map.fitBounds(mdbla.highlightedPolygon.getBounds()); 
+	if(zoomornot) mdbla.map.fitBounds(mdbla.highlightedPolygon.getBounds());
 
 }
