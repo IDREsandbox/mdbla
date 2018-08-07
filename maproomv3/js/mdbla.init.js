@@ -186,7 +186,7 @@ mdbla.displayData = function()
 			var wafflevalues = {};
 			wafflevalues.title = 'Charge';
 			wafflevalues.data = [mdbla.highlightedData.data._charge_m,mdbla.highlightedData.data._charge_f,mdbla.highlightedData.data._charge_o]
-			wafflevalues.labels = ['Misdimeanor','Felony','Other']
+			wafflevalues.labels = ['Misdemeanor','Felony','Other']
 			$('#data-text2').append('<div class="col-sm">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
 		}
 
@@ -302,7 +302,7 @@ mdbla.createWaffleChart = function(values)
 	waffle += '<table class="table table-sm table-condensed smallfont" style="text-align:left;">';
 
 	for (var i = 0; i < values.data.length; i++) {
-		waffle += '<tr><td width="50%"><div class="waffle-box-empty" style="background-color:'+mdbla.colorPallete[i]+'"> &nbsp&nbsp&nbsp&nbsp'+values.labels[i]+'</div></td><td width="50%" align="right">'+values.data[i]+' ('+normalizedValues[i]+'%)</td><td><div class="waffle-border" style="float:left;"></div></td></tr>';
+		waffle += '<tr><td width="60%"><div class="waffle-box-empty smallfont" style="background-color:'+mdbla.colorPallete[i]+'"> &nbsp&nbsp&nbsp&nbsp'+values.labels[i]+'</div></td><td width="40%" align="right">'+values.data[i]+' ('+normalizedValues[i]+'%)</td><td><div class="waffle-border" style="float:left;"></div></td></tr>';
 	}
 
 	waffle += '</table></div>'
