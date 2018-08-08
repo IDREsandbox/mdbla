@@ -15,6 +15,35 @@ mdbla.init = function()
 	// fit to bounds
 	mdbla.map.fitBounds(mdbla.mapLayer.getBounds())
 
+	// start the noUiSlider
+	mdbla.millionDollarSlider();
+}
+
+mdbla.millionDollarSlider = function()
+{
+
+	$("#slider").ionRangeSlider({
+		min: 0,
+		max: mdbla.maxCost,
+		from: mdbla.mapDollarThreshold,
+		grid: true,
+		prefix: "$",
+		step: 10000,
+		prettify_enabled: true,
+		prettify_separator: ",",
+		// prettify: function (num) {
+		// 	return ("$"+num);
+		// },
+		onChange:function (data) {
+			mdbla.mapDollarThreshold = data.from
+			mdbla.mapLayer.setStyle(mdbla.style)
+			console.log(data.from);
+		},
+	});
+
+	// Save slider instance to var
+	mdbla.mapSlider = $("#slider").data("ionRangeSlider");
+
 }
 
 /*
@@ -59,6 +88,21 @@ mdbla.mapGeoJSON = function()
 			mdbla.currentLayer = val;
 		}
 	})
+
+	// get max cost
+	mdbla.maxCost = 0;
+	$.each(mdbla.currentLayer.datavar,function(i,val){
+		if(val._cost>mdbla.maxCost)
+		{
+			round2million = Math.round(val._cost / 1000000) * 1000000;
+			mdbla.maxCost = round2million
+		}
+	})
+	console.log(mdbla.maxCost)
+	if(mdbla.mapSlider !== undefined)
+	{
+		mdbla.mapSlider.update({max:mdbla.maxCost})
+	}
 
 	// if rankings tab is on, refresh the data
 	if(mdbla.activeTab === 'Rankings')
@@ -202,14 +246,23 @@ mdbla.resetHighlight = function(e) {
 }
 
 mdbla.getColor = function(d) {
-	return d > 6000000  ? '#e31a1c' :
-		   d > 1000000  ? '#636363' :
-		   d > 500000   ? '#969696' :
-		   d > 200000   ? '#CCCCCC' :
-		   d > 100000   ? '#F7F7F7' :
-						'#FFF';
+	return d > mdbla.mapDollarThreshold  ? '#e31a1c' :
+		   // d > 1000000  ? '#636363' :
+		   // d > 500000   ? '#969696' :
+		   // d > 200000   ? '#CCCCCC' :
+		   // d > 100000   ? '#F7F7F7' :
+						'#969696';
 }
 
+// mdbla.getColor = function(d) {
+// 	return d > 6000000  ? '#e31a1c' :
+// 		   d > 1000000  ? '#636363' :
+// 		   d > 500000   ? '#969696' :
+// 		   d > 200000   ? '#CCCCCC' :
+// 		   d > 100000   ? '#F7F7F7' :
+// 						'#FFF';
+// }
+//
 mdbla.style = function(feature) {
 	// find the _cost
 	var identifyer = mdbla.currentLayer.identifyer
@@ -223,8 +276,6 @@ mdbla.style = function(feature) {
 	{
 		var cost = featurejoin._cost;
 	}
-
-	console.log(cost)
 
 	return {
 		fillColor: mdbla.getColor(cost),
@@ -302,7 +353,8 @@ mdbla.createWaffleChart = function(values)
 	waffle += '<table class="table table-sm table-condensed smallfont" style="text-align:left;">';
 
 	for (var i = 0; i < values.data.length; i++) {
-		waffle += '<tr><td width="60%"><div class="waffle-box-empty smallfont" style="background-color:'+mdbla.colorPallete[i]+'"> &nbsp&nbsp&nbsp&nbsp'+values.labels[i]+'</div></td><td class="smallfont" width="40%" align="right">'+values.data[i]+' ('+normalizedValues[i]+'%)</td><td><div class="waffle-border" style="float:left;"></div></td></tr>';
+		waffle += '<tr><td><div class="waffle-box-empty smallfont" style="background-color:'+mdbla.colorPallete[i]+'"> &nbsp&nbsp&nbsp&nbsp</div></td><td>'+values.labels[i]+' '+values.data[i]+' ('+normalizedValues[i]+'%)</td><td><div class="waffle-border" style="float:left;"></div></td></tr>';
+		// waffle += '<tr><td width="60%"><div class="waffle-box-empty smallfont" style="background-color:'+mdbla.colorPallete[i]+'"> &nbsp&nbsp&nbsp&nbsp'+values.labels[i]+'</div></td><td class="smallfont" width="40%" align="right">'+values.data[i]+' ('+normalizedValues[i]+'%)</td><td><div class="waffle-border" style="float:left;"></div></td></tr>';
 	}
 
 	waffle += '</table></div>'

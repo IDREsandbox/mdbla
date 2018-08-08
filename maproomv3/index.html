@@ -24,6 +24,10 @@
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<script src="js/rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="js/rangeSlider/css/ion.rangeSlider.css">
+	<link rel="stylesheet" href="js/rangeSlider/css/ion.rangeSlider.skinFlat.css">
+
 	<link rel="stylesheet" href="styles/style.css">
 
 </head>
@@ -34,7 +38,9 @@
 		<!-- left side: map -->
 		<div class="col-sm fill no-padding">
 			<div id="map"></div>
-			<!-- <div class='nav-overlay'></div> -->
+			<div id="slider-container">
+				<input type="text" id="slider" name="millionDollarSlider" value="" />
+			</div><!-- <div class='nav-overlay'></div> -->
 		</div>
 
 		<!-- right side: data -->
@@ -69,7 +75,7 @@
 						<div class="container">
 							<div class="row" id="data-text1">
 								<div class="alert alert-dark">
-									On the map to the left, hover your mouse on neighborhoods to learn how much LASD and LAPD spent to incarcerate residents of that community between 2012 and 2017.  With each click you will also access supplemental data, such as the leading causes of arrest within each neighborhood and the racial and gender demographics of arrested persons.  
+									On the map to the left, hover your mouse on neighborhoods to learn how much LASD and LAPD spent to incarcerate residents of that community between 2012 and 2017.  With each click you will also access supplemental data, such as the leading causes of arrest within each neighborhood and the racial and gender demographics of arrested persons.
 								</div>
 							</div>
 							<div class="row" id="data-text2"></div>

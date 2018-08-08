@@ -98,6 +98,8 @@ mdbla.setParameters = function()
 	mdbla.geography = "Neighborhoods";
 	mdbla.department = "LAPD";
 	mdbla.geojson = neighborhoods;
+	mdbla.mapDollarThreshold = 6000000;
+	mdbla.mapSlider;
 
 	/*
 
