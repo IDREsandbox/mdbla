@@ -3,10 +3,18 @@
 	Config File for MDBLA Maproom v2.0
 
 	Author: yohman
-	Last updated: July 31, 2018
+	Last updated: September 26, 2019
 	To add/update data refer to:
 		https://github.com/IDREsandbox/mdbla/wiki/Adding-Updating-new-data-layers-for-Maproom-v2
+	Updated:
+		- modal added to start screen
 
+
+	Author: albert
+	Last updated: November 20, 2019
+
+	Updated:
+		- commented out all other geographies besides neighborhoods	
 ***/
 
 /***
@@ -31,6 +39,11 @@
 ***/
 
 $(document).ready(function() {
+
+	// launch the modal with welcome message
+	$('#mdhModal').modal()
+
+	// get started with loading data
 	mdbla.getData();
 });
 
@@ -46,18 +59,18 @@ mdbla.getData = function()
 		*/
 		$.getScript( "data/lasd_2012_2017_by_neighborhood2.js" ),
 		$.getScript( "data/lapd_2012_2017_by_neighborhood.js" ),
-		$.getScript( "data/lasd_2012_2017_by_region2.js" ),
-		$.getScript( "data/lapd_2012_2017_by_region.js" ),
-		$.getScript( "data/lasd_2012_2017_by_assembly2.js" ),
-		$.getScript( "data/lapd_2012_2017_by_assembly.js" ),
-		$.getScript( "data/lasd_2012_2017_by_senate2.js" ),
-		$.getScript( "data/lapd_2012_2017_by_senate.js" ),
+		// $.getScript( "data/lasd_2012_2017_by_region2.js" ),
+		// $.getScript( "data/lapd_2012_2017_by_region.js" ),
+		// $.getScript( "data/lasd_2012_2017_by_assembly2.js" ),
+		// $.getScript( "data/lapd_2012_2017_by_assembly.js" ),
+		// $.getScript( "data/lasd_2012_2017_by_senate2.js" ),
+		// $.getScript( "data/lapd_2012_2017_by_senate.js" ),
 
 		// boundaries
 		$.getScript( "data/boundaries/neighborhoods.js" ),
-		$.getScript( "data/boundaries/regions.js" ),
-		$.getScript( "data/boundaries/senate.js" ),
-		$.getScript( "data/boundaries/assembly.js" ),
+		// $.getScript( "data/boundaries/regions.js" ),
+		// $.getScript( "data/boundaries/senate.js" ),
+		// $.getScript( "data/boundaries/assembly.js" ),
 
 		// javascript
 		$.getScript( "js/mdbla.init.js" ),
@@ -76,10 +89,11 @@ mdbla.setParameters = function()
 {
 	// valid geography layers
 	mdbla.geographies = [
-		"Neighborhoods",
-		"Regions",
-		"Senate",
-		"Assembly"
+		"Neighborhoods"
+		// "Neighborhoods",
+		// "Regions",
+		// "Senate",
+		// "Assembly"
 	]
 
 	/*
@@ -125,61 +139,61 @@ mdbla.setParameters = function()
 			geographyname: 	"Neighborhoods",
 			geography: 		neighborhoods,
 			datavar: 		lasd_2012_2017_by_neighborhood
-		},
-		{
-			title: 			"LAPD 2012-2017 by Regions",
-			department: 	"LAPD",
-			years: 			"2012-2017",
-			identifyer: 	'region',
-			geographyname: 	"Regions",
-			geography: 		regions,
-			datavar: 		lapd_2012_2017_by_region
-		},
-		{
-			title: 			"LASD 2012-2017 by Regions",
-			department: 	"LASD",
-			years: 			"2012-2017",
-			identifyer: 	'region',
-			geographyname: 	"Regions",
-			geography: 		regions,
-			datavar: 		lasd_2012_2017_by_region
-		},
-		{
-			title: 			"LAPD 2012-2017 by Assembly District",
-			department: 	"LAPD",
-			years: 			"2012-2017",
-			identifyer: 	'assembly',
-			geographyname: 	"Assembly",
-			geography: 		assembly,
-			datavar: 		lapd_2012_2017_by_assembly
-		},
-		{
-			title: 			"LASD 2012-2017 by Assembly District",
-			department: 	"LASD",
-			years: 			"2012-2017",
-			identifyer: 	'assembly',
-			geographyname: 	"Assembly",
-			geography: 		assembly,
-			datavar: 		lasd_2012_2017_by_assembly
-		},
-		{
-			title: 			"LAPD 2012-2017 by Senate District",
-			department: 	"LAPD",
-			years: 			"2012-2017",
-			identifyer: 	'senate',
-			geographyname: 	"Senate",
-			geography: 		senate,
-			datavar: 		lapd_2012_2017_by_senate
-		},
-		{
-			title: 			"LASD 2012-2017 by Senate District",
-			department: 	"LASD",
-			years: 			"2012-2017",
-			identifyer: 	'senate',
-			geographyname: 	"Senate",
-			geography: 		senate,
-			datavar: 		lasd_2012_2017_by_senate
-		},
+		}
+		// {
+		// 	title: 			"LAPD 2012-2017 by Regions",
+		// 	department: 	"LAPD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'region',
+		// 	geographyname: 	"Regions",
+		// 	geography: 		regions,
+		// 	datavar: 		lapd_2012_2017_by_region
+		// },
+		// {
+		// 	title: 			"LASD 2012-2017 by Regions",
+		// 	department: 	"LASD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'region',
+		// 	geographyname: 	"Regions",
+		// 	geography: 		regions,
+		// 	datavar: 		lasd_2012_2017_by_region
+		// },
+		// {
+		// 	title: 			"LAPD 2012-2017 by Assembly District",
+		// 	department: 	"LAPD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'assembly',
+		// 	geographyname: 	"Assembly",
+		// 	geography: 		assembly,
+		// 	datavar: 		lapd_2012_2017_by_assembly
+		// },
+		// {
+		// 	title: 			"LASD 2012-2017 by Assembly District",
+		// 	department: 	"LASD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'assembly',
+		// 	geographyname: 	"Assembly",
+		// 	geography: 		assembly,
+		// 	datavar: 		lasd_2012_2017_by_assembly
+		// },
+		// {
+		// 	title: 			"LAPD 2012-2017 by Senate District",
+		// 	department: 	"LAPD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'senate',
+		// 	geographyname: 	"Senate",
+		// 	geography: 		senate,
+		// 	datavar: 		lapd_2012_2017_by_senate
+		// },
+		// {
+		// 	title: 			"LASD 2012-2017 by Senate District",
+		// 	department: 	"LASD",
+		// 	years: 			"2012-2017",
+		// 	identifyer: 	'senate',
+		// 	geographyname: 	"Senate",
+		// 	geography: 		senate,
+		// 	datavar: 		lasd_2012_2017_by_senate
+		// },
 	];
 
 /***
