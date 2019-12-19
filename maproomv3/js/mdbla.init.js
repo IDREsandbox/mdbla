@@ -17,6 +17,11 @@ mdbla.init = function()
 
 	// start the noUiSlider
 	mdbla.millionDollarSlider();
+	mdbla.help()
+}
+
+mdbla.help = function(){
+	$('.nav-overlay').append('<button type="button" id="help-button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#mdhModal">?</button>')
 }
 
 mdbla.millionDollarSlider = function()

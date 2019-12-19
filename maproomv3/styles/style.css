@@ -35,6 +35,17 @@ p {
 	padding-right: 0px;
 } */
 
+#help-button{
+	border-radius: 100%;
+	margin-left:1em;
+	border-color: rgb(105, 154, 187);
+}
+
+#help-button:active{
+	color: #1F78B4;
+}
+
+
 #slider-container {
 	background-color: rgba(0, 0, 0, 0.7);
 	z-index: 999;
