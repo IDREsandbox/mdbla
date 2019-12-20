@@ -280,7 +280,8 @@ mdbla.setParameters = function()
 			setactiveclass = ""
 		}
 
-		html += '<button id="button-'+geography+'" type="button" class="btn btn-sm btn-secondary '+setactiveclass+' " onclick="mdbla.geography=\''+geography+'\';mdbla.mapGeoJSON(\''+geography+'\',\''+mdbla.department+'\')">'+geography+'</button> ';
+		//AK: Removed the neighborhood button!
+		// html += '<button id="button-'+geography+'" type="button" class="btn btn-sm btn-secondary '+setactiveclass+' " onclick="mdbla.geography=\''+geography+'\';mdbla.mapGeoJSON(\''+geography+'\',\''+mdbla.department+'\')">'+geography+'</button> ';
 	})
 
 	// divider
