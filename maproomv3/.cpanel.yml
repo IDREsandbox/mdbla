@@ -1,4 +1,0 @@
----
-deployment:
-  tasks:
-    - git pull
