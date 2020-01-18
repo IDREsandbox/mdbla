@@ -1,5 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home3/millipp4/public_html/
-    - / -r $DEPLOYPATH
+    - git pull
