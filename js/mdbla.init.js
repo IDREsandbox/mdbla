@@ -33,7 +33,7 @@ mdbla.millionDollarSlider = function()
 		from: mdbla.mapDollarThreshold,
 		grid: true,
 		prefix: "$",
-		step: 10000,
+		step: 500000,
 		prettify_enabled: true,
 		prettify_separator: ",",
 		// prettify: function (num) {
