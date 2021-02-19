@@ -219,7 +219,7 @@ mdbla.displayData = function()
 		var wafflevalues = {};
 		wafflevalues.title = 'Race';
 		wafflevalues.data = [mdbla.highlightedData.data._race_h,mdbla.highlightedData.data._race_b,mdbla.highlightedData.data._race_w,Number(mdbla.highlightedData.data._race_o2)]
-		wafflevalues.labels = ['Hispanic','Black','White','Other']
+		wafflevalues.labels = ['Hispanic','Black','White','All Others']
 		$('#data-text2').html('<div class="col-sm">'+mdbla.createWaffleChart(wafflevalues)+'</div>');
 
 		// gender waffle
